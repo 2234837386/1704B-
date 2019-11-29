@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>更新代码</h1>
+    <router-link></router-link>
   </div>
 </template>
