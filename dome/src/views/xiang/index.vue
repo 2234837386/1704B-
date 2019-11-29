@@ -9,8 +9,13 @@
             <button v-if='list'>{{list.BottomEntranceTitle}}</button>
         </div>
         <div class="timemsg" >
-            <span>全部</span>
+
+            <span
+                v-for="(item,index) in getYear"
+                :key="index"
+            >{{item}}</span>
             <!-- <span v-for="(item,index) in list.list" :key="index">{{item.market_attribute.year}}</span> -->
+            <!-- {{getYear}} -->
         </div>
             <div class="inhale_type" v-for="(item,index) in list.list" :key="index">
             <div class="title">{{item.exhaust_str}}/{{item.max_power_str}}{{item.inhale_type}}</div>
@@ -47,20 +52,27 @@ export default {
         }
     },
     created() {
-        console.log(this.$route.params.id)
+        // console.log(this.$route.params.id)
         axios.get(`https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.$route.params.id}`).then(res=>{
             this.list=res.data.data
-            console.log(this.list.list)
+            // console.log(this.list)
         })
        
     },
     mounted() {
     },
     computed:{
-    //    getYear(){
-    //        let arr=["全部"];
-    //        this.list=JSON.parse(JSON.stringify())
-    //    }
+       getYear(){
+           let arr=["全部"];
+           let data=JSON.parse(JSON.stringify(this.list.list))
+            data&&data.map(item=>{
+                if(arr.find(a=>a===item.market_attribute.year)) return;
+                arr.push(item.market_attribute.year)
+               
+            })
+              return arr;
+       }
+       
     },
     methods:{
         tiaoimg(item){
@@ -80,8 +92,11 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
+    overflow: hidden;
+    overflow-y: auto;
     flex-direction: column;
     background: #eee;
+    box-sizing: border-box;
     .banimg{
         width: 100%;
         height: 180px;
