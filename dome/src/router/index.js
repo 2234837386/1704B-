@@ -1,18 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-// import Xiang from '../views/xiang'
-
 Vue.use(VueRouter)
-
 const routes = [
   {
     path: '/home',
     name: 'home',
-    component: Home
+    component: () => import('../views/Home.vue')
   },
   {
-    path: '/xiang',
+    path: '/xiang/:id',
     name: 'xiang',
     component: () => import('../views/xiang')
   },
@@ -25,8 +21,9 @@ const routes = [
     component:()=>import('../views/pictures')
   },
   {
-    path:'/',
+    path:'*',
     redirect:'/home'
+  
   }
 ]
 

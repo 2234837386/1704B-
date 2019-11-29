@@ -43,18 +43,24 @@ export default {
     data(){
         return {
             list:[],
-            arr:[]
+            // arr:[]
         }
     },
     created() {
-        axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=2593').then(res=>{
+        console.log(this.$route.params.id)
+        axios.get(`https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.$route.params.id}`).then(res=>{
             this.list=res.data.data
             console.log(this.list.list)
         })
        
     },
+    mounted() {
+    },
     computed:{
-       
+    //    getYear(){
+    //        let arr=["全部"];
+    //        this.list=JSON.parse(JSON.stringify())
+    //    }
     },
     methods:{
         tiaoimg(item){
