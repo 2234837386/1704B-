@@ -1,5 +1,35 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+
   </div>
 </template>
+<script>
+export default {
+  props:{
+
+  },
+  components:{
+
+  },
+  data(){
+    return {
+
+    }
+  },
+  computed:{
+
+  },
+  methods:{
+
+  },
+  created(){
+
+  },
+  mounted(){
+
+  }
+}
+</script>
+<style scoped lang="">
+
+</style>
