@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <router-view />
 </template>
 <script>
 import { mapActions } from "vuex";
@@ -13,10 +13,10 @@ export default {
   methods: {
     ...mapActions(["loadList"])
   },
-  created() {},
-  mounted() {
+  created() {
     this.loadList();
-  }
+  },
+  mounted() {}
 };
 </script>
 <style lang="scss">
