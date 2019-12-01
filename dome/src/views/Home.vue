@@ -3,7 +3,7 @@
     <div class="header">
       <p>可向多个商家咨询最低价，商家及时回复</p>
     </div>
-    <div class="had">
+    <div class="had" @click="showI">
       <div class="img">
         <img src="http://img2.bitautoimg.com/autoalbum/files/20180131/094/0319300949_3.jpg" alt />
       </div>
@@ -38,23 +38,30 @@
         <p>经销报价商家</p>
     </div>
         <Up :ismask="ismask"/>
+        <Money :isZhan='isZhan'/>
   </div>
 </template>
 
 <script>
+import Money from '../components/Money'
 import Up from '../components/Up'
 export default {
     components: {
-        Up
+        Up,
+        Money
     },
      data() {
     return {
-      ismask: false
+      ismask: false,
+      isZhan:false
     };
   },
     methods: {
         tan(){
            this.ismask=!this.ismask
+        },
+        showI(){
+          this.isZhan=!this.isZhan
         }
     }
 };
@@ -64,7 +71,7 @@ export default {
 .warp {
   widows: 100%;
   height: 100%;
-  background: #eeeeee
+  background: #eeeeee;
 }
 .header {
   width: 100%;
@@ -135,7 +142,7 @@ export default {
   width: 90%;
   height: 45px;
   border-bottom: 1px solid #eeeeee;
-  text-indent: 9rem;
+  text-indent: 8.5rem;
   font-size: 16px;
   outline: none;
 }
