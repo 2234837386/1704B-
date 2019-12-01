@@ -23,8 +23,7 @@ export default {
      }},
      created () {
         this.$http.get('https://baojia.chelun.com/v1-city-alllist.html').then(res=>{
-          https://baojia.chelun.com/v1-city-alllist.html
-          https://baojia.chelun.com/v1-city-alllist.html
+        
             console.log(res.data.data);
             this.cityList=res.data.data
         })
