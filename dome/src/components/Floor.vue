@@ -1,13 +1,17 @@
 <template>
   <div class="floor">
-    <p>#</p>
-    <p v-for="(item,index) in getzm" :key="index">{{item}}</p>
+    <a href="#A">#</a>
+    <a :href="`#${item}`" v-for="(item,index) in getzm" :key="index">{{item}}</a>
   </div>
 </template>
 <script>
 import { mapState } from "vuex";
 export default {
-  props: ["getzm"],
+  props: {
+    getzm: {
+      type: Array
+    }
+  },
   components: {},
   data() {
     return {};
@@ -28,13 +32,14 @@ export default {
   top: 50%;
   transform: translateY(-50%);
   flex-shrink: 0;
-  p {
+  a {
     width: 100%;
     height: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.8rem;
+    list-style: none;
   }
 }
 </style>

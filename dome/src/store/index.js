@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     list: [],
-    nav: []
+    nav: [],
+    isMask: false
   },
   mutations: {
     getList(state, actions) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     getNav(state, actions) {
       state.nav = actions.nav;
+    },
+    edit(state, actions) {
+      state.isMask = actions;
     }
   },
   actions: {
@@ -24,12 +28,9 @@ export default new Vuex.Store({
       })
     },
     loadNav(store, actions) {
-      axios.get("https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html").then(res => {
-        console.log(actions)
-        // store.commit({ type: "getNav", nav: res.data.data })
+      axios.get(`https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID=${actions}`).then(res => {
+        store.commit({ type: "getNav", nav: res.data.data })
       })
     }
-  },
-  modules: {
   }
 })

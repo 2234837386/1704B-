@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <aMask :isMask="isMask" :ind="ind" />
+    <aMask :isMask="isMask" />
     <Floor :getzm="getzm" />
     <div class="list">
-      <div class="dome" v-for="(item,index) in getzm" :key="index">
+      <div class="dome" v-for="(item,index) in getzm" :key="index" :id="item">
         <h3>{{item}}</h3>
         <div class="main">
           <dl
@@ -11,10 +11,7 @@
             v-for="(a,i) in list.filter(z=>z.Spelling.slice(0,1)===item)"
             :key="i"
             :data-id="a.MasterID"
-            @click="()=>{
-              isMask=!isMask;
-              ind=a.MasterID;
-              }"
+            @click="indfn(a)"
           >
             <dt>
               <img v-lazy="a.CoverPhoto" alt />
@@ -29,17 +26,16 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   components: {},
   data() {
     return {
-      isMask: false,
       ind: 0
     };
   },
   computed: {
-    ...mapState(["list"]),
+    ...mapState(["list", "isMask"]),
     getzm() {
       let arr = [];
       this.list.map(item => {
@@ -50,7 +46,15 @@ export default {
       return arr;
     }
   },
-  methods: {},
+  methods: {
+    ...mapActions(["loadNav"]),
+    ...mapMutations(["edit"]),
+    indfn(item) {
+      this.edit(true);
+      this.ind = item.MasterID;
+      this.loadNav(this.ind);
+    }
+  },
   created() {},
   mounted() {}
 };
@@ -69,53 +73,53 @@ export default {
     flex-direction: column;
     font-size: 0.8rem;
     overflow-y: auto;
-    .dome {
+  }
+}
+.dome {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  h3 {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    background: #ccc;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+  .main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    .item {
       width: 100%;
+      height: 4rem;
       display: flex;
-      flex-direction: column;
-      h3 {
-        width: 100%;
-        height: 2rem;
+      border-bottom: 1px solid #ccc;
+      padding: 0.1rem;
+      box-sizing: border-box;
+      dt {
+        width: 15%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 2rem;
+          height: 2rem;
+          display: block;
+        }
+      }
+      dd {
+        flex: 1;
+        height: 100%;
         display: flex;
         align-items: center;
-        background: #ccc;
-        padding: 0 1rem;
-        box-sizing: border-box;
-      }
-      .main {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        padding: 0 1rem;
-        box-sizing: border-box;
-        .item {
-          width: 100%;
-          height: 4rem;
-          display: flex;
-          border-bottom: 1px solid #ccc;
-          padding: 0.1rem;
-          box-sizing: border-box;
-          dt {
-            width: 15%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            img {
-              width: 2rem;
-              height: 2rem;
-              display: block;
-            }
-          }
-          dd {
-            flex: 1;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            text-indent: 0.5rem;
-          }
-        }
+        text-indent: 0.5rem;
       }
     }
   }
