@@ -8,7 +8,7 @@
           v-for="(a,i) in item.GroupList"
           :key="i"
           :data-ind="a.SerialID"
-          @click="()=>{$router.push(`/xiang/${a.SerialID}`)}"
+          @click="()=>{$router.push(`/details/${a.SerialID}`)}"
         >
           <dt>
             <img v-lazy="a.Picture" alt />
@@ -70,11 +70,13 @@ export default {
   flex-direction: column;
   h3 {
     width: 100%;
-    height: 2rem;
+    height: 1.5rem;
     display: flex;
     align-items: center;
-    background: #ccc;
+    background: #f5f5f5;
     padding: 0 1rem;
+    font-weight: normal;
+    font-size: 1rem;
     box-sizing: border-box;
   }
   .main {
@@ -87,7 +89,7 @@ export default {
       width: 100%;
       height: 4rem;
       display: flex;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #f5f5f5;
       padding: 0.1rem;
       box-sizing: border-box;
       dt {
@@ -98,8 +100,8 @@ export default {
         align-items: center;
         flex-shrink: 0;
         img {
-          width: 3.5rem;
-          height: 3rem;
+          width: 4.5rem;
+          height: 3.5rem;
           display: block;
           flex-shrink: 0;
         }
@@ -119,9 +121,9 @@ export default {
           width: 100%;
           flex: 1;
           font-style: normal;
+          font-size: 1rem;
         }
         i {
-          font-size: 0.8rem;
           color: #f00;
         }
       }

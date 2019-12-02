@@ -71,7 +71,6 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    font-size: 0.8rem;
     overflow-y: auto;
   }
 }
@@ -81,11 +80,13 @@ export default {
   flex-direction: column;
   h3 {
     width: 100%;
-    height: 2rem;
+    height: 1.5rem;
     display: flex;
     align-items: center;
-    background: #ccc;
+    background: #f5f5f5;
     padding: 0 1rem;
+    font-weight: normal;
+    font-size: 1rem;
     box-sizing: border-box;
   }
   .main {
@@ -98,7 +99,7 @@ export default {
       width: 100%;
       height: 4rem;
       display: flex;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #f5f5f5;
       padding: 0.1rem;
       box-sizing: border-box;
       dt {
@@ -107,10 +108,9 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-
         img {
-          width: 2rem;
-          height: 2rem;
+          width: 3rem;
+          height: 3rem;
           display: block;
         }
       }
@@ -120,6 +120,10 @@ export default {
         display: flex;
         align-items: center;
         text-indent: 0.5rem;
+        b {
+          font-size: 1rem;
+          font-weight: normal;
+        }
       }
     }
   }

@@ -3,16 +3,15 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 const routes = [
-
   {
     path: '/home',
     name: 'home',
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/xiang/:id',
-    name: 'xiang',
-    component: () => import('../views/xiang')
+    path: '/details/:id',
+    name: 'details',
+    component: () => import('../views/details')
   },
   {
     path: '/mask',
