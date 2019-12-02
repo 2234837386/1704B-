@@ -5,12 +5,12 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-      path:'/home',
-      component:()=>import('../views/Home.vue')
+      path:'/cart',
+      component:()=>import('../views/Cart.vue')
     },
     {
       path:'*',
-      redirect: '/home'
+      redirect: '/cart'
     }
 ]
 
