@@ -1,13 +1,14 @@
 <template>
     <div class="picture_page">
         <div class="p_top">
-            <li>颜色</li>
+            <li @click="carcolor">颜色</li>
             <li>车款</li>
         </div>
         <router-view></router-view>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     props:{
 
@@ -17,17 +18,27 @@ export default {
     },
     data(){
         return {
-
+            id:''
         }
     },
     computed:{
-
-    },
-    methods:{
-
+        
     },
     created(){
-
+        this.id=this.$route.query.SerialID;
+        // console.log(this.id)
+    
+    },
+     methods:{
+        
+        carcolor(){
+            this.$router.push({
+                path:'/clors',
+                query:{
+                    SerialID:this.id
+                }
+            })
+        }
     },
     mounted(){
 

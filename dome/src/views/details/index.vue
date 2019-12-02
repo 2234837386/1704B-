@@ -50,7 +50,8 @@ export default {
         return {
             list:[],
             // arr:[]
-            ind:0
+            ind:0,
+            gets:[]
         }
     },
     created() {
@@ -59,15 +60,18 @@ export default {
             this.list=res.data.data
             // console.log(this.list)
         })
+        
        
     },
     mounted() {
     },
+    
     computed:{
-       getYear(){
+         getYear(){
            let arr=["全部"];
-           let data=JSON.parse(JSON.stringify(this.list.list))
-            data&&data.map(item=>{
+        //    let data=[...this.list.list]
+           let data=JSON.stringify(this.list.list)
+            data&&JSON.parse(data).map(item=>{
                 if(arr.find(a=>a===item.market_attribute.year)) return;
                 arr.push(item.market_attribute.year)
                
@@ -151,6 +155,8 @@ export default {
         flex-shrink: 0;
         span{
             margin: 0 10px;
+            &active{
+                color: #09f;}
         }
         span:first-child{
             color: #09f;
@@ -235,7 +241,5 @@ export default {
         // margin: 5px;
     }
 }
-.int{
-    color: #09f;
-}
+
 </style>
