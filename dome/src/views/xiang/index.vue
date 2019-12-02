@@ -30,7 +30,7 @@
             </div>
 
         </div>
-        <div class="btn"  v-if="list.BottomEntranceTitle">
+        <div class="btn"  v-if="list.BottomEntranceTitle" @click="xiao">
             <b>{{list.BottomEntranceTitle}}</b>
             <span>本地经销商为您报价</span>
         </div>
@@ -83,6 +83,9 @@ export default {
                }
                
            }) 
+        },
+        xiao(){
+            this.$router.push('/cart')
         }
     }
 }
