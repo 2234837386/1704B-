@@ -11,6 +11,7 @@
         <div class="timemsg" >
 
             <span
+             :class="{active:index===ind}"
                 v-for="(item,index) in getYear"
                 :key="index"
             >{{item}}</span>
@@ -49,6 +50,7 @@ export default {
         return {
             list:[],
             // arr:[]
+            ind:0
         }
     },
     created() {
@@ -86,7 +88,10 @@ export default {
         },
         xiao(){
             this.$router.push('/cart')
-        }
+        },
+        tab(ind) {
+      this.ind = ind;
+    }
     }
 }
 </script>
@@ -229,5 +234,8 @@ export default {
         // font-size: 18px;
         // margin: 5px;
     }
+}
+.int{
+    color: #09f;
 }
 </style>

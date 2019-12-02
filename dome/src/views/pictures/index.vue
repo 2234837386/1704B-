@@ -44,6 +44,7 @@ export default {
         .p_top{
             width: 100%;
             height: 50px;
+            line-height: 50px;
             display: flex;
             li{
                 flex: 1;

@@ -16,9 +16,9 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/xiang/:id',
+    path: '/details/:id',
     name: 'xiang',
-    component: () => import('../views/xiang')
+    component: () => import('../views/details')
   },
   {
     path:'/mask',
