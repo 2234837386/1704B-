@@ -36,6 +36,7 @@
 
     <div class="dian">
         <p>经销报价商家</p>
+        <div></div>
     </div>
         <Up :ismask="ismask"/>
         <Money :isZhan='isZhan'/>
@@ -56,13 +57,20 @@ export default {
       isZhan:false
     };
   },
+
     methods: {
         tan(){
            this.ismask=!this.ismask
         },
         showI(){
           this.isZhan=!this.isZhan
-        }
+        },
+      
+    },
+    created () {
+       this.$http.get('https://baojia.chelun.com/v2-dealer-alllist.html').then(res=>{
+               console.log(res.data);
+           })
     }
 };
 </script>
