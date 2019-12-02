@@ -3,8 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Vuelazyload from "vue-lazyload"
-// import Mask from "@/components/Mask.vue"
-// import Floor from "@/components/Floor.vue"
 
 Vue.config.productionTip = false;
 Vue.component("aMask", () => import("@/components/Mask.vue"));

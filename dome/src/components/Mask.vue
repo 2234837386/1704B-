@@ -8,7 +8,7 @@
           v-for="(a,i) in item.GroupList"
           :key="i"
           :data-ind="a.SerialID"
-          @click="()=>{$router.push(`/car/${a.SerialID}`)}"
+          @click="()=>{$router.push(`/xiang/${a.SerialID}`)}"
         >
           <dt>
             <img v-lazy="a.Picture" alt />
