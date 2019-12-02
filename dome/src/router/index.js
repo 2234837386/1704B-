@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 Vue.use(VueRouter)
 const routes = [
+
   {
     path: '/home',
     name: 'home',
@@ -13,17 +15,20 @@ const routes = [
     component: () => import('../views/xiang')
   },
   {
-    path:'/mask',
-    component:()=>import('../views/pictures/ban.vue')
+    path: '/mask',
+    component: () => import('../views/pictures/ban.vue')
   },
   {
-    path:'/picture',
-    component:()=>import('../views/pictures')
+    path: '/picture',
+    component: () => import('../views/pictures')
   },
   {
-    path:'*',
-    redirect:'/home'
-  
+    path: '/cart',
+    component: () => import('../views/Cart.vue')
+  },
+  {
+    path: '*',
+    redirect: '/home'
   }
 ]
 

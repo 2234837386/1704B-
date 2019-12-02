@@ -19,8 +19,8 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {}s
-};s
+  mounted() {}
+};
 </script>
 <style scoped lang="scss">
 .floor {
