@@ -6,7 +6,7 @@
         <b v-if="list.market_attribute">{{list.market_attribute.dealer_price}}</b>
         <span v-if="list.market_attribute">指导价：{{list.market_attribute.official_refer_price}}</span>
       </p>
-      <button v-if="list">{{list.BottomEntranceTitle}}</button>
+      <button v-if="list" @click="xiao">{{list.BottomEntranceTitle}}</button>
     </div>
     <div class="timemsg">
       <span
@@ -26,7 +26,7 @@
           <span>{{item.market_attribute.dealer_price_max}}</span>
           <b>{{item.market_attribute.dealer_price_min}}</b>
         </li>
-        <i v-if="list.BottomEntranceTitle">{{list.BottomEntranceTitle}}</i>
+        <i v-if="list.BottomEntranceTitle" @click="xiao">{{list.BottomEntranceTitle}}</i>
       </div>
     </div>
     <div class="btn" v-if="list.BottomEntranceTitle" @click="xiao">

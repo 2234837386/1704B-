@@ -1,5 +1,6 @@
 <template>
   <div id="mask" :class="{active:isMask}">
+    <!-- {{this.$store.state}} -->
     <div class="dome" v-for="(item,index) in nav" :key="index">
       <h3 @click="edit(false)">{{item.GroupName}}</h3>
       <div class="main">
