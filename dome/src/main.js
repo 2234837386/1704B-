@@ -5,8 +5,8 @@ import store from './store'
 import axios from 'axios'
 import './fonts/iconfont.css'
 import Vuelazyload from "vue-lazyload"
-
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
+Vue.prototype.$http = axios
 Vue.component("aMask", () => import("@/components/Mask.vue"));
 Vue.component("Floor", () => import("@/components/Floor.vue"));
 
@@ -16,10 +16,6 @@ Vue.use(Vuelazyload, {
   loading: "/favicon.ico",
   attempt: 1
 })
-
-Vue.config.productionTip = false
-Vue.prototype.$http = axios
-
 
 new Vue({
   router,
