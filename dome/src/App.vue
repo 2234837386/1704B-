@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
   <router-view />
-=======
-    <router-view/>
->>>>>>> 696d24ca8a1891bc2200fdcef748d22b77fa1082
 </template>
 <script>
 import { mapActions } from "vuex";
