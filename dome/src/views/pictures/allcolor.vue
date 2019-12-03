@@ -11,6 +11,7 @@
         <div class="main">
             <div class="box" v-for="(ite,k) in list[type]" 
             :key="k"
+            @click="tiaocolor(ite)"
             >
             <i class="cbox" :style="{'background':ite.Value}"></i>
             <span>{{ite.Name}}</span>
@@ -56,8 +57,16 @@ export default {
                 query:{
                     // CarId:this.list.car_id,
                     SerialID:this.id,
-                    ColorID:this.list[this.type].ColorId
 
+                }
+            })
+        },
+        tiaocolor(ite){
+           
+            this.$router.push({
+                path:'/carconte',
+                query:{
+                    colorName:ite.Name
                 }
             })
         }

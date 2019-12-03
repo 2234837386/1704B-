@@ -27,7 +27,7 @@
                     <span>{{item.market_attribute.dealer_price_max}}</span>
                     <b>{{item.market_attribute.dealer_price_min}}</b>
                     </li>
-                    <i v-if="list.BottomEntranceTitle">{{list.BottomEntranceTitle}}</i>
+                    <i class="ibtn" v-if="list.BottomEntranceTitle">{{list.BottomEntranceTitle}}</i>
             </div>
 
         </div>
@@ -49,19 +49,22 @@ export default {
     data(){
         return {
             list:[],
+            carlist:[],
             // arr:[]
             ind:0,
-            gets:[]
+            gets:[],
+            carId:''
         }
     },
     created() {
         // console.log(this.$route.params.id)
         axios.get(`https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.$route.params.id}`).then(res=>{
             this.list=res.data.data
-            // console.log(this.list)
+            this.carlist=this.list.list
         })
         
-       
+    //    this.carId=this.getCarid()
+    this.getCarid()
     },
     mounted() {
     },
@@ -77,7 +80,9 @@ export default {
                
             })
               return arr;
-       }
+       },
+       
+
        
     },
     methods:{
@@ -91,11 +96,23 @@ export default {
            }) 
         },
         xiao(){
-            this.$router.push('/cart')
+            this.$router.push({
+                path:'/cart',
+                query:{
+                    // carId:this.carId
+                }
+            })
         },
         tab(ind) {
       this.ind = ind;
-    }
+    },
+    getCarid(){
+           let ids=this.carlist.map((item,index)=>{
+               return item;
+               console.log(item)
+           })
+           
+       }
     }
 }
 </script>
@@ -241,5 +258,7 @@ export default {
         // margin: 5px;
     }
 }
-
+.ibtn{
+    font-style: normal;
+}
 </style>

@@ -12,27 +12,39 @@ const routes = [
       path:'/cart',
       component:()=>import('../views/Cart.vue')
     },
-   {
-      path:'/clors',
-      component:()=>import('../views/pictures/allcolor.vue')
-   },
+ 
   {
     path: '/details/:id',
-    name: 'xiang',
+
     component: () => import('../views/details')
   },
   {
-    path:'/mask',
-    component:()=>import('../views/pictures/ban.vue')
+    path: '/mask',
+    component: () => import('../views/pictures/ban.vue')
   },
   {
-    path:'/picture',
-    component:()=>import('../views/pictures')
+    path: '/picture',
+    component: () => import('../views/pictures')
   },
   {
-    path:'*',
-    redirect:'/home'
-  
+    path:'/clors',
+    component:()=>import('../views/pictures/allcolor.vue')
+ },
+ {
+  path:'/carstyle',
+  component:()=>import('../views/pictures/carstyle.vue')
+},
+{
+  path:'/carconte',
+  component:()=>import('../views/pictures/carcont.vue')
+},
+  {
+    path: '/cart',
+    component: () => import('../views/Cart.vue')
+  },
+  {
+    path: '*',
+    redirect: '/home'
   }
 
 ]

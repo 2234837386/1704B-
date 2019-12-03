@@ -1,10 +1,11 @@
 <template>
     <div class="picture_page">
         <div class="p_top">
-            <li @click="carcolor">颜色</li>
-            <li>车款</li>
+            <li @click="carcolor">颜色<i class="iconfont icon-angle-down" ></i></li>
+            <li @click="carstyle">车款<i class="iconfont icon-angle-down" ></i></li>
         </div>
-        <router-view></router-view>
+
+        <!-- <router-view></router-view> -->
     </div>
 </template>
 <script>
@@ -34,6 +35,14 @@ export default {
         carcolor(){
             this.$router.push({
                 path:'/clors',
+                query:{
+                    SerialID:this.id
+                }
+            })
+        },
+        carstyle(){
+            this.$router.push({
+                path:'/carstyle',
                 query:{
                     SerialID:this.id
                 }
