@@ -18,7 +18,6 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 export default {
   props: {},
   components: {},
@@ -50,16 +49,17 @@ export default {
     },
     tiaocolor(ite) {
       this.$router.push({
-        path: "/carconte",
+        path: "/picture",
         query: {
-          colorName: ite.Name
+          colorName: ite.Name,
+          SerialID:this.$route.query.SerialID
         }
       });
     }
   },
   created() {
     this.id = this.$route.query.SerialID;
-    axios
+    this.$http
       .get(
         `https://baojia.chelun.com/v2-car-getModelImageYearColor.html?SerialID=${this.id}`
       )

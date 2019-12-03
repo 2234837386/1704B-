@@ -42,7 +42,6 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 export default {
   props: {},
   components: {},
@@ -57,7 +56,7 @@ export default {
     };
   },
   created() {
-    axios
+    this.$http
       .get(
         `https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.$route.params.id}`
       )

@@ -1,27 +1,27 @@
 <template>
-     <div id='msk' :class="{active:isZhan}">
-         
-         <div class="head">2017</div>
-         <div>3.0L/324W涡轮增压</div>
-         
-     </div>
+  <div id="msk" :class="{active:isZhan}">
+    <div class="head">2017</div>
+    <div>3.0L/324W涡轮增压</div>
+  </div>
 </template>
 
 <script>
 export default {
-     props:{isZhan:{
-         type:Boolean
-     }},
-     data () {
-         return {
-             CarList:[]
-         }
-     }
-}
+  props: {
+    isZhan: {
+      type: Boolean
+    }
+  },
+  data() {
+    return {
+      CarList: []
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-#msk{
+#msk {
   width: 100%;
   height: 100%;
   background: #ffffff;

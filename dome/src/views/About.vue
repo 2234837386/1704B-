@@ -1,35 +1,18 @@
 <template>
-  <div class="about">
-  
-  </div>
+  <div class="about"></div>
 </template>
 <script>
 export default {
-  props:{
-
+  props: {},
+  components: {},
+  data() {
+    return {};
   },
-  components:{
-
-  },
-  data(){
-    return {
-
-    }
-  },
-  computed:{
-
-  },
-  methods:{
-
-  },
-  created(){
-
-  },
-  mounted(){
-
-  }
-}
+  computed: {},
+  methods: {},
+  created() {},
+  mounted() {}
+};
 </script>
 <style scoped lang="">
-
 </style>
