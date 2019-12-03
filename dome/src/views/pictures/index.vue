@@ -2,11 +2,11 @@
   <div class="picture_page">
     <div class="p_top">
       <li @click="carcolor">
-        颜色
+        {{color?color:'颜色'}}
         <i class="iconfont icon-angle-down"></i>
       </li>
       <li @click="carstyle">
-        车款
+        {{cars?cars:'车款'}}
         <i class="iconfont icon-angle-down"></i>
       </li>
     </div>
@@ -20,11 +20,16 @@ export default {
   components: {},
   data() {
     return {
-      id: ""
+      id: "",
+      color:'颜色',
+      cars:'车款'
     };
   },
   computed: {},
   created() {
+    this.color = this.$route.query.colorName;
+    this.cars=this.$route.query.carName
+    console.log(this.$route.query.colorName)
     this.id = this.$route.query.SerialID;
     // console.log(this.id)
   },

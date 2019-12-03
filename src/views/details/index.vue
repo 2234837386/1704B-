@@ -6,18 +6,14 @@
         <b v-if="list.market_attribute">{{list.market_attribute.dealer_price}}</b>
         <span v-if="list.market_attribute">指导价：{{list.market_attribute.official_refer_price}}</span>
       </p>
-
-      <button v-if="list" @click="xiao">{{list.BottomEntranceTitle}}</button>
+      <button v-if="list">{{list.BottomEntranceTitle}}</button>
     </div>
     <div class="timemsg">
-      <span
-        :class="{active:ind===index}"
-        v-for="(item,index) in getYear"
-        :key="index"
-        @click="()=>ind=index"
-      >{{item}}</span>
+      <span :class="{active:index===ind}" v-for="(item,index) in getYear" :key="index">{{item}}</span>
+      <!-- <span v-for="(item,index) in list.list" :key="index">{{item.market_attribute.year}}</span> -->
+      <!-- {{getYear}} -->
     </div>
-    <div class="inhale_type" v-for="(item,index) in listEach" :key="index">
+    <div class="inhale_type" v-for="(item,index) in list.list" :key="index">
       <div class="title">{{item.exhaust_str}}/{{item.max_power_str}}{{item.inhale_type}}</div>
       <div class="text">
         <span>{{item.market_attribute.year}}款 {{item.car_name}}</span>
@@ -35,13 +31,13 @@
       </div>
     </div>
     <div class="btn" v-if="list.BottomEntranceTitle">
-   
       <b>{{list.BottomEntranceTitle}}</b>
       <span>本地经销商为您报价</span>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   props: {},
   components: {},
@@ -49,14 +45,15 @@ export default {
     return {
       list: [],
       carlist: [],
-
+      // arr:[]
       ind: 0,
       gets: [],
       carId: ""
     };
   },
   created() {
-    this.$http
+    // console.log(this.$route.params.id)
+    axios
       .get(
         `https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.$route.params.id}`
       )
@@ -64,12 +61,16 @@ export default {
         this.list = res.data.data;
         this.carlist = this.list.list;
       });
+
+    //    this.carId=this.getCarid()
     this.getCarid();
   },
   mounted() {},
+
   computed: {
     getYear() {
       let arr = ["全部"];
+      //    let data=[...this.list.list]
       let data = JSON.stringify(this.list.list);
       data &&
         JSON.parse(data).map(item => {
@@ -77,18 +78,6 @@ export default {
           arr.push(item.market_attribute.year);
         });
       return arr;
-
-    },
-    listEach() {
-      let list = JSON.stringify(this.list.list);
-      return (
-        list &&
-        JSON.parse(list).filter(item => {
-          if (this.getYear[this.ind] === "全部") return item;
-          return this.getYear[this.ind] === item.market_attribute.year;
-        })
-      );
-
     }
   },
   methods: {
