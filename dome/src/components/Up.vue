@@ -1,54 +1,58 @@
 <template>
   <div id="up" :class="{active:ismask}">
-      <div class="header">自动定位</div>
-      <div class="bei">北京</div>
-      <div class="heade">省份</div>
+    <div class="header">自动定位</div>
+    <div class="bei">北京</div>
+    <div class="heade">省份</div>
 
-      <div  @click="show(item.CityID)" v-for="(item,index) in cityList" :key="index" class="con" 
-         :dataId="item.CityID"
-      >{{item.CityName}}
-         <span class="iconfont icon-angle-right"></span>
-      </div>
-   <Left :isShow="isShow"/>
+    <div
+      @click="show(item.CityID)"
+      v-for="(item,index) in cityList"
+      :key="index"
+      class="con"
+      :dataId="item.CityID"
+    >
+      {{item.CityName}}
+      <span class="iconfont icon-angle-right"></span>
+    </div>
+
+    <Left :isShow="isShow" />
   </div>
 </template>
 
 <script>
-import Left from './Left';
-import axios from 'axios'
-import {mapMutations,mapActions,mapState} from 'vuex';
+import Left from "./Left";
+import { mapMutations, mapActions, mapState } from "vuex";
 export default {
   components: {
     Left
   },
   computed: {
-     ...mapState(['cityList'])
+    ...mapState(["cityList"])
   },
-     props:{ismask:{
-         type:Boolean
-     }},
-      methods: {
-        // ...mapMutations(['getId']),
-        ...mapActions(['gt']),
-        
-        show(id){
-          console.log(id)
-           this.isShow=!this.isShow
-          // this.getId(id);
-          // this.cityL()
+  props: {
+    ismask: {
+      type: Boolean
+    }
+  },
+  methods: {
+    ...mapMutations(["getId"]),
+    ...mapActions(["gt", "cityL"]),
 
-        }
-       
-    },
-    created () {
-       this.gt()
-    },
-     data(){
-       return {
-           isShow:false,
-       }
-     }
-
+    show(id) {
+      console.log(id);
+      this.isShow = true;
+      this.getId(id);
+      this.cityL();
+    }
+  },
+  created() {
+    this.gt();
+  },
+  data() {
+    return {
+      isShow: false
+    };
+  }
 };
 </script>
 
@@ -60,33 +64,34 @@ export default {
   position: absolute;
   left: 0;
   bottom: 0;
-  overflow: hidden;
+  overflow-y: scroll;
   transform: translateY(100%);
   transition: all 1s ease;
   &.active {
     transform: translateY(0%);
   }
 }
-#up .header{
-   width: 100%;
-   height: 20px;
-   background: #eeeeee;
-   color: #666;
-   font-size: 12px;
+
+#up .header {
+  width: 100%;
+  height: 20px;
+  background: #eeeeee;
+  color: #666;
+  font-size: 12px;
 }
-.bei{
-   width: 100%;
-   height: 45px;
-   line-height: 45px;
-   padding: 0 20px
+.bei {
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 20px;
 }
-.heade{
-width: 100%;
-   height: 20px;
-   background: #eeeeee;
-   font-size: 14px;
+.heade {
+  width: 100%;
+  height: 20px;
+  background: #eeeeee;
+  font-size: 14px;
 }
-.con{
+.con {
   width: 100%;
   height: 45px;
   border-bottom: 1px solid #eeeeee;
@@ -94,7 +99,7 @@ width: 100%;
   display: flex;
   position: relative;
 }
-.con .icon-angle-right{
+.con .icon-angle-right {
   position: absolute;
   right: 5px;
 }

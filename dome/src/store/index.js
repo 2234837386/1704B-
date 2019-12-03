@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from "axios"
+
 
 Vue.use(Vuex)
 
@@ -10,10 +10,12 @@ export default new Vuex.Store({
     nav: [],
     isMask: false,
     // 省市id
-    id:'',
-    // 渲染城市的中的数据的列表的数组
-    cityList:[],
-    
+    id: '',
+    // 渲染省市
+    cityList: [],
+    // 城市列表
+    cityIndex: []
+
   },
   mutations: {
     getList(state, actions) {
@@ -25,12 +27,16 @@ export default new Vuex.Store({
     edit(state, actions) {
       state.isMask = actions;
     },
-    getId(state,actions){
+    getId(state, actions) {
       state.id = actions;
     },
     //改变城市列表的唯一的方法
-    getCityList(state,actions){
-      state.cityList=actions.cityList;
+    getCityList(state, actions) {
+      state.cityList = actions.cityList;
+    },
+    getCityIndex(state, actions) {
+      state.cityIndex = actions.cityIndex;
+      console.log(state.cityIndex)
     }
   },
   actions: {
@@ -42,8 +48,9 @@ export default new Vuex.Store({
     // 渲染城市的列表
     gt(store) {
       axios.get("https://baojia.chelun.com/v1-city-alllist.html").then(res => {
+        // console.log(res)
         store.commit({ type: "getCityList", cityList: res.data.data })
-        console.log(res.data.data);
+
       })
     },
     loadNav(store, actions) {
@@ -51,12 +58,13 @@ export default new Vuex.Store({
         store.commit({ type: "getNav", nav: res.data.data })
       })
     },
-    // cityL(store,payload){
-    //   let id = this.state.id
-    //     this.$http.get(`https://baojia.chelun.com/location-client.html`,{params:{provinceid:id}}).then(res=>{
-    //       console.log(res)
-    //         store.commit({type:'getCityList',cityList:res.data.data}) 
-    //     })
-    // }
+    cityL(store, payload) {
+      let id = this.state.id;
+      console.log(id);
+      axios.get(`https://baojia.chelun.com/v1-city-alllist.html`, { params: { provinceid: id } }).then(res => {
+        console.log(res)
+        store.commit({ type: 'getCityIndex', cityIndex: res.data.data })
+      })
+    }
   }
 })
