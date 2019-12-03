@@ -71,6 +71,10 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
+=======
+    font-size: 0.8rem;
+>>>>>>> 696d24ca8a1891bc2200fdcef748d22b77fa1082
     overflow-y: auto;
   }
 }
@@ -80,6 +84,7 @@ export default {
   flex-direction: column;
   h3 {
     width: 100%;
+<<<<<<< HEAD
     height: 1.5rem;
     display: flex;
     align-items: center;
@@ -87,6 +92,13 @@ export default {
     padding: 0 1rem;
     font-weight: normal;
     font-size: 1rem;
+=======
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    background: #ccc;
+    padding: 0 1rem;
+>>>>>>> 696d24ca8a1891bc2200fdcef748d22b77fa1082
     box-sizing: border-box;
   }
   .main {
@@ -97,6 +109,7 @@ export default {
     box-sizing: border-box;
     .item {
       width: 100%;
+<<<<<<< HEAD
       height: 3rem;
       display: flex;
       border-bottom: 0.08rem solid #ddd;
@@ -105,15 +118,29 @@ export default {
       &:last-child {
         border-bottom: 0;
       }
+=======
+      height: 4rem;
+      display: flex;
+      border-bottom: 1px solid #ccc;
+      padding: 0.1rem;
+      box-sizing: border-box;
+>>>>>>> 696d24ca8a1891bc2200fdcef748d22b77fa1082
       dt {
         width: 15%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+<<<<<<< HEAD
         img {
           width: 3rem;
           height: 90%;
+=======
+
+        img {
+          width: 2rem;
+          height: 2rem;
+>>>>>>> 696d24ca8a1891bc2200fdcef748d22b77fa1082
           display: block;
         }
       }
@@ -123,10 +150,13 @@ export default {
         display: flex;
         align-items: center;
         text-indent: 0.5rem;
+<<<<<<< HEAD
         b {
           font-size: 1rem;
           font-weight: normal;
         }
+=======
+>>>>>>> 696d24ca8a1891bc2200fdcef748d22b77fa1082
       }
     }
   }

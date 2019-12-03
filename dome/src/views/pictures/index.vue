@@ -1,13 +1,15 @@
 <template>
     <div class="picture_page">
         <div class="p_top">
-            <li>颜色</li>
-            <li>车款</li>
+            <li @click="carcolor">颜色<i class="iconfont icon-angle-down" ></i></li>
+            <li @click="carstyle">车款<i class="iconfont icon-angle-down" ></i></li>
         </div>
-        <router-view></router-view>
+
+        <!-- <router-view></router-view> -->
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     props:{
 
@@ -17,17 +19,35 @@ export default {
     },
     data(){
         return {
-
+            id:''
         }
     },
     computed:{
-
-    },
-    methods:{
-
+        
     },
     created(){
-
+        this.id=this.$route.query.SerialID;
+        // console.log(this.id)
+    
+    },
+     methods:{
+        
+        carcolor(){
+            this.$router.push({
+                path:'/clors',
+                query:{
+                    SerialID:this.id
+                }
+            })
+        },
+        carstyle(){
+            this.$router.push({
+                path:'/carstyle',
+                query:{
+                    SerialID:this.id
+                }
+            })
+        }
     },
     mounted(){
 

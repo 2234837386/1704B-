@@ -12,7 +12,6 @@ Vue.prototype.$getUrl = function (url) {
   let str = newurl.slice(7);
   return "https://images.weserv.nl?url=" + str;
 }
-
 Vue.component("aMask", () => import("@/components/Mask.vue"));
 Vue.component("Floor", () => import("@/components/Floor.vue"));
 
