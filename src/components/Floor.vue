@@ -38,9 +38,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 0.8rem;
     list-style: none;
-    color: #aaa;
   }
 }
 </style>

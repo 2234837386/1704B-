@@ -8,20 +8,14 @@ const routes = [
     name: 'home',
     component: () => import('../views/Home.vue')
   },
+    {
+      path:'/cart',
+      component:()=>import('../views/Cart.vue')
+    },
+ 
   {
-    path: '/cart',
-    name: "cart",
-    component: () => import('../views/Cart.vue')
-  },
+    path: '/details/:id',
 
-  {
-    path: '/details/:id',
-    name: "details",
-    component: () => import('../views/details')
-  },
-  {
-    path: '/details/:id',
-    name: 'details',
     component: () => import('../views/details')
   },
   {
@@ -33,21 +27,26 @@ const routes = [
     component: () => import('../views/pictures')
   },
   {
-    path: '/clors',
-    component: () => import('../views/pictures/allcolor.vue')
-  },
+    path:'/clors',
+    component:()=>import('../views/pictures/allcolor.vue')
+ },
+ {
+  path:'/carstyle',
+  component:()=>import('../views/pictures/carstyle.vue')
+},
+{
+  path:'/carconte',
+  component:()=>import('../views/pictures/carcont.vue')
+},
   {
-    path: '/carstyle',
-    component: () => import('../views/pictures/carstyle.vue')
-  },
-  {
-    path: '/carconte',
-    component: () => import('../views/pictures/carcont.vue')
+    path: '/cart',
+    component: () => import('../views/Cart.vue')
   },
   {
     path: '*',
     redirect: '/home'
   }
+
 ]
 
 const router = new VueRouter({

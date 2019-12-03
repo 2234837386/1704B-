@@ -11,7 +11,7 @@
           @click="()=>{$router.push(`/details/${a.SerialID}`)}"
         >
           <dt>
-            <img v-lazy="$getUrl(a.Picture)" alt />
+            <img v-lazy="a.Picture" alt />
           </dt>
           <dd>
             <span>{{a.AliasName}}</span>
@@ -70,41 +70,36 @@ export default {
   flex-direction: column;
   h3 {
     width: 100%;
-    height: 1.5rem;
+    height: 2rem;
     display: flex;
     align-items: center;
-    background: #f5f5f5;
+    background: #ccc;
     padding: 0 1rem;
-    font-weight: normal;
-    font-size: 1rem;
     box-sizing: border-box;
   }
   .main {
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding: 0 1rem;
+    box-sizing: border-box;
     .item {
       width: 100%;
-      height: 5rem;
+      height: 4rem;
       display: flex;
-      border-bottom: 0.08rem solid #ddd;
+      border-bottom: 1px solid #ccc;
       padding: 0.1rem;
       box-sizing: border-box;
-      &:last-child {
-        border-bottom: 0;
-      }
       dt {
-        width: 30%;
+        width: 15%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-left: 1rem;
-        box-sizing: border-box;
         flex-shrink: 0;
         img {
-          width: 5.5rem;
-          height: 80%;
+          width: 3.5rem;
+          height: 3rem;
           display: block;
           flex-shrink: 0;
         }
@@ -124,9 +119,9 @@ export default {
           width: 100%;
           flex: 1;
           font-style: normal;
-          font-size: 1rem;
         }
         i {
+          font-size: 0.8rem;
           color: #f00;
         }
       }

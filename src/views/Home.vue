@@ -11,10 +11,10 @@
             v-for="(a,i) in list.filter(z=>z.Spelling.slice(0,1)===item)"
             :key="i"
             :data-id="a.MasterID"
-            @click.prevent="indfn(a)"
+            @click="indfn(a)"
           >
             <dt>
-              <img v-lazy="$getUrl(a.CoverPhoto)" alt />
+              <img v-lazy="a.CoverPhoto" alt />
             </dt>
             <dd>
               <b>{{a.Name}}</b>
@@ -71,6 +71,7 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
+    font-size: 0.8rem;
     overflow-y: auto;
   }
 }
@@ -80,13 +81,11 @@ export default {
   flex-direction: column;
   h3 {
     width: 100%;
-    height: 1.5rem;
+    height: 2rem;
     display: flex;
     align-items: center;
-    background: #f5f5f5;
+    background: #ccc;
     padding: 0 1rem;
-    font-weight: normal;
-    font-size: 1rem;
     box-sizing: border-box;
   }
   .main {
@@ -97,23 +96,21 @@ export default {
     box-sizing: border-box;
     .item {
       width: 100%;
-      height: 3rem;
+      height: 4rem;
       display: flex;
-      border-bottom: 0.08rem solid #ddd;
+      border-bottom: 1px solid #ccc;
       padding: 0.1rem;
       box-sizing: border-box;
-      &:last-child {
-        border-bottom: 0;
-      }
       dt {
         width: 15%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+
         img {
-          width: 3rem;
-          height: 90%;
+          width: 2rem;
+          height: 2rem;
           display: block;
         }
       }
@@ -123,10 +120,6 @@ export default {
         display: flex;
         align-items: center;
         text-indent: 0.5rem;
-        b {
-          font-size: 1rem;
-          font-weight: normal;
-        }
       }
     }
   }
