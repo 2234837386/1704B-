@@ -3,12 +3,13 @@
     <div class="header">自动定位</div>
     <div class="bei">北京</div>
     <div class="heade">省份</div>
+
     <div
-      @click="show"
+      @click="show(item.CityID)"
       v-for="(item,index) in cityList"
       :key="index"
       class="con"
-      :data-id="item.CityID"
+      :dataId="item.CityID"
     >
       {{item.CityName}}
       <span class="iconfont icon-angle-right"></span>
@@ -19,31 +20,35 @@
 
 <script>
 import Left from "./Left";
+import { mapMutations, mapActions, mapState } from "vuex";
 export default {
   components: {
     Left
+  },
+  computed: {
+    ...mapState(["cityList"])
   },
   props: {
     ismask: {
       type: Boolean
     }
   },
-  created() {
-    this.$http
-      .get("https://baojia.chelun.com/v1-city-alllist.html")
-      .then(res => {
-        console.log(res.data.data);
-        this.cityList = res.data.data;
-      });
-  },
   methods: {
-    show() {
-      this.isShow = !this.isShow;
+    ...mapMutations(["getId"]),
+    ...mapActions(["gt", "cityL"]),
+
+    show(id) {
+      console.log(id);
+      this.isShow = true;
+      this.getId(id);
+      this.cityL();
     }
+  },
+  created() {
+    this.gt();
   },
   data() {
     return {
-      cityList: [],
       isShow: false
     };
   }
@@ -58,7 +63,7 @@ export default {
   position: absolute;
   left: 0;
   bottom: 0;
-  overflow: hidden;
+  overflow-y: scroll;
   transform: translateY(100%);
   transition: all 1s ease;
   &.active {
