@@ -49,9 +49,10 @@ export default {
     },
     tiaocolor(ite) {
       this.$router.push({
-        path: "/carconte",
+        path: "/picture",
         query: {
-          colorName: ite.Name
+          colorName: ite.Name,
+          SerialID:this.$route.query.SerialID
         }
       });
     }

@@ -31,11 +31,12 @@ export default {
   methods: {
     tiao(item) {
       this.$router.push({
-        path: "/carconte",
+        path: "/picture",
         query: {
           carId: item.car_id,
           carName: item.car_name,
-          carYear: item.market_attribute.year
+          carYear: item.market_attribute.year,
+          SerialID:this.$route.query.SerialID
         }
       });
     }
