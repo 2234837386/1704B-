@@ -4,7 +4,9 @@
       <div class="bei">北京</div>
       <div class="heade">省份</div>
 
-      <div  @click="show" v-for="(item,index) in cityList" :key="index" class="con" :data-id="item.CityID">{{item.CityName}}
+      <div  @click="show(item.CityID)" v-for="(item,index) in cityList" :key="index" class="con" 
+         :dataId="item.CityID"
+      >{{item.CityName}}
          <span class="iconfont icon-angle-right"></span>
       </div>
    <Left :isShow="isShow"/>
@@ -12,31 +14,37 @@
 </template>
 
 <script>
-import Left from './Left'
+import Left from './Left';
+import axios from 'axios'
+import {mapMutations,mapActions,mapState} from 'vuex';
 export default {
   components: {
     Left
   },
-
+  computed: {
+     ...mapState(['cityList'])
+  },
      props:{ismask:{
          type:Boolean
      }},
-     created () {
-        this.$http.get('https://baojia.chelun.com/v1-city-alllist.html').then(res=>{
-        
-            console.log(res.data.data);
-            this.cityList=res.data.data
-        })
-     },
       methods: {
-
-        show(){
+        // ...mapMutations(['getId']),
+        ...mapActions(['gt']),
+        
+        show(id){
+          console.log(id)
            this.isShow=!this.isShow
+          // this.getId(id);
+          // this.cityL()
+
         }
+       
+    },
+    created () {
+       this.gt()
     },
      data(){
        return {
-           cityList:[],
            isShow:false,
        }
      }

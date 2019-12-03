@@ -1,6 +1,6 @@
 <template>
      <div id="mask" :class="{active:isShow}">
-         
+         <div></div>
      </div>
 </template>
 
@@ -8,9 +8,13 @@
 export default {
   props:{isShow:{
          type:Boolean
-     }},
-     
-    
+     }
+},
+    created () {
+      //  this.$http.get('https://baojia.chelun.com/location-client.html',{params:{provinceid}}).then(res=>{
+      //     console.log(res.data);
+      //  })
+    }
    
 }
 </script>

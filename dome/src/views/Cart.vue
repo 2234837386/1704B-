@@ -12,66 +12,69 @@
         <p>2019款 4.0T v8 Volante特别版</p>
       </div>
       <div class="spn">
-        <span>></span>
+        <span class="iconfont icon-angle-right hh"></span>
       </div>
     </div>
     <div class="from">
       <div class="biao">
         <p>个人信息</p>
       </div>
-
-      <form action class="ipy">
-        <label for>姓名</label>
-        <input type="text" placeholder="输入你的真实中文姓名" />
-        <label for>电话</label>
-        <input type="text" placeholder="输入你的真实手机号码" />
-
-        <div class="city">
-          <label for>城市</label>
-          <p @click="tan">北京></p>
-        </div>
+      <div class="message">
+        <li>
+          <span>姓名</span>
+          <input type="text" placeholder="输入你的真实中文姓名" />
+        </li>
+        <li>
+          <span>手机</span>
+          <input type="text" placeholder="输入你的真实手机号码" />
+        </li>
+        <li @click="tan">
+          <span>城市</span>
+          <i class="iconfont icon-angle-right"></i>
+        </li>
         <button class="btn">询问最低价</button>
-      </form>
+      </div>
     </div>
 
     <div class="dian">
-        <p>经销报价商家</p>
+      <p>经销报价商家</p>
     </div>
-        <Up :ismask="ismask"/>
-        <Money :isZhan='isZhan'/>
+    <Up :ismask="ismask" />
+    <Money :isZhan="isZhan" />
   </div>
 </template>
 
 <script>
-import Money from '../components/Money'
-import Up from '../components/Up'
+import Money from "../components/Money";
+import Up from "../components/Up";
 export default {
-    components: {
-        Up,
-        Money
-    },
-     data() {
+  components: {
+    Up,
+    Money
+  },
+  data() {
     return {
       ismask: false,
-      isZhan:false
+      isZhan: false
     };
   },
-    methods: {
-        tan(){
-           this.ismask=!this.ismask
-        },
-        showI(){
-          this.isZhan=!this.isZhan
-        }
+  methods: {
+    tan() {
+      this.ismask = !this.ismask;
+    },
+    showI() {
+      this.isZhan = !this.isZhan;
     }
+  }
 };
 </script>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .warp {
-  widows: 100%;
+  width: 100%;
   height: 100%;
-  background: #eeeeee;
+  position: relative;
+  overflow: hidden;
 }
 .header {
   width: 100%;
@@ -102,49 +105,54 @@ export default {
   margin-top: 3px;
   line-height: 30px;
 }
-.had .spn span {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
+.hh {
   text-align: center;
-  margin-top: 150%;
+  margin-top: 40px;
 }
 .from {
   width: 100%;
-  height: 200px;
+  height: 210px;
   background: #ffffff;
   padding: 0 10px;
 }
-.from .biao{
- width: 100%;
+.from .biao {
+  width: 100%;
   height: 20px;
-    background: #eeeeee;
+  background: #eeeeee;
 }
 .from .biao p {
   font-size: 12px;
   color: #666;
-  
   line-height: 20px;
 }
-.ipy {
-  border: none;
+.message {
   width: 100%;
-  height: 130px;
-  background: #fff;
-  padding: 0 10px;
 }
-.ipy label {
-  width: 20%;
-  height: 45px;
-}
-.ipy input {
-  border: none;
-  width: 90%;
-  height: 45px;
+
+.message li {
+  width: 100%;
+  color: #666;
   border-bottom: 1px solid #eeeeee;
-  text-indent: 8.5rem;
-  font-size: 16px;
+  height: 47px;
+  display: flex;
+  line-height: 45px;
+  position: relative;
+}
+.message li span {
+  width: 32px;
+  display: inline-block;
+  color: black;
+}
+.message li input {
   outline: none;
+  height: 45px;
+  flex: 1;
+  border: none;
+  text-align: end;
+}
+.iconfont {
+  position: absolute;
+  right: 10px;
 }
 .city {
   width: 100%;
@@ -170,10 +178,10 @@ export default {
   font-size: 15px;
 }
 
-.dian{
-    width: 100%;
-    background: #eeeeee;
-    padding: 0 10px
+.dian {
+  width: 100%;
+  background: #eeeeee;
+  padding: 0 10px;
 }
 .dian p {
   font-size: 12px;
