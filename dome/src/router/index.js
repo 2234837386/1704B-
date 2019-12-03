@@ -3,37 +3,51 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 const routes = [
-
-    {
-      path:'/cart',
-      component:()=>import('../views/Cart.vue')
-    },
-   
-
   {
     path: '/home',
     name: 'home',
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/xiang/:id',
-    name: 'xiang',
-    component: () => import('../views/xiang')
+    path: '/cart',
+    name: "cart",
+    component: () => import('../views/Cart.vue')
   },
-  {
-    path:'/mask',
-    component:()=>import('../views/pictures/ban.vue')
-  },
-  {
-    path:'/picture',
-    component:()=>import('../views/pictures')
-  },
-  {
-    path:'*',
-    redirect:'/home'
-  
-  }
 
+  {
+    path: '/details/:id',
+    name: "details",
+    component: () => import('../views/details')
+  },
+  {
+    path: '/details/:id',
+    name: 'details',
+    component: () => import('../views/details')
+  },
+  {
+    path: '/mask',
+    component: () => import('../views/pictures/ban.vue')
+  },
+  {
+    path: '/picture',
+    component: () => import('../views/pictures')
+  },
+  {
+    path: '/clors',
+    component: () => import('../views/pictures/allcolor.vue')
+  },
+  {
+    path: '/carstyle',
+    component: () => import('../views/pictures/carstyle.vue')
+  },
+  {
+    path: '/carconte',
+    component: () => import('../views/pictures/carcont.vue')
+  },
+  {
+    path: '*',
+    redirect: '/home'
+  }
 ]
 
 const router = new VueRouter({
