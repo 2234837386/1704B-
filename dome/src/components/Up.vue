@@ -14,7 +14,6 @@
       {{item.CityName}}
       <span class="iconfont icon-angle-right"></span>
     </div>
-
     <Left :isShow="isShow" />
   </div>
 </template>
@@ -71,7 +70,6 @@ export default {
     transform: translateY(0%);
   }
 }
-
 #up .header {
   width: 100%;
   height: 20px;
