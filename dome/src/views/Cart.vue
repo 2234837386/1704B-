@@ -35,35 +35,35 @@
     </div>
 
     <div class="dian">
-        <p>经销报价商家</p>
+      <p>经销报价商家</p>
     </div>
-        <Up :ismask="ismask"/>
-        <Money :isZhan='isZhan'/>
+    <Up :ismask="ismask" />
+    <Money :isZhan="isZhan" />
   </div>
 </template>
 
 <script>
-import Money from '../components/Money'
-import Up from '../components/Up'
+import Money from "../components/Money";
+import Up from "../components/Up";
 export default {
-    components: {
-        Up,
-        Money
-    },
-     data() {
+  components: {
+    Up,
+    Money
+  },
+  data() {
     return {
       ismask: false,
-      isZhan:false
+      isZhan: false
     };
   },
-    methods: {
-        tan(){
-           this.ismask=!this.ismask
-        },
-        showI(){
-          this.isZhan=!this.isZhan
-        }
+  methods: {
+    tan() {
+      this.ismask = !this.ismask;
+    },
+    showI() {
+      this.isZhan = !this.isZhan;
     }
+  }
 };
 </script>
 
@@ -115,15 +115,15 @@ export default {
   background: #ffffff;
   padding: 0 10px;
 }
-.from .biao{
- width: 100%;
+.from .biao {
+  width: 100%;
   height: 20px;
-    background: #eeeeee;
+  background: #eeeeee;
 }
 .from .biao p {
   font-size: 12px;
   color: #666;
-  
+
   line-height: 20px;
 }
 .ipy {
@@ -170,10 +170,10 @@ export default {
   font-size: 15px;
 }
 
-.dian{
-    width: 100%;
-    background: #eeeeee;
-    padding: 0 10px
+.dian {
+  width: 100%;
+  background: #eeeeee;
+  padding: 0 10px;
 }
 .dian p {
   font-size: 12px;

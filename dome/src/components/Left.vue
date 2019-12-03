@@ -1,18 +1,15 @@
 <template>
-     <div id="mask" :class="{active:isShow}">
-         
-     </div>
+  <div id="mask" :class="{active:isShow}"></div>
 </template>
 
 <script>
 export default {
-  props:{isShow:{
-         type:Boolean
-     }},
-     
-    
-   
-}
+  props: {
+    isShow: {
+      type: Boolean
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

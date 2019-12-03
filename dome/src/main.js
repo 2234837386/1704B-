@@ -16,7 +16,7 @@ Vue.component("aMask", () => import("@/components/Mask.vue"));
 Vue.component("Floor", () => import("@/components/Floor.vue"));
 
 Vue.use(Vuelazyload, {
-  preload: 0.5,
+  preload: 3.9,
   error: "/1.jpg",
   loading: "/favicon.ico",
   attempt: 1
