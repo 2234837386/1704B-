@@ -37,42 +37,14 @@ export default {
           carName: item.car_name,
           carYear: item.market_attribute.year
         }
-
-    },
-    computed:{
-
-    },
-    methods:{
-        tiao(item){
-            this.$router.push({
-                path:'/carconte',
-                query:{
-                    carId:item.car_id,
-                    carName:item.car_name,
-                    carYear:item.market_attribute.year
-                    
-                }
-            })
-        }
-    },
-    created(){
-        this.id=this.$route.query.SerialID
-        this.$http.get(`https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.id}`).then(res=>{
-            this.list=res.data.data;
-            // console.log(this.list)
-            this.carlist=this.list.list;
-            // console.log(this.carlist)
-        })
-    },
-    mounted(){
-
       });
-
     }
   },
+
   created() {
     this.id = this.$route.query.SerialID;
-    this.$http.get(
+    this.$http
+      .get(
         `https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.id}`
       )
       .then(res => {
@@ -81,8 +53,7 @@ export default {
         this.carlist = this.list.list;
         // console.log(this.carlist)
       });
-  },
-  mounted() {}
+  }
 };
 </script>
 <style lang="scss" scoped>

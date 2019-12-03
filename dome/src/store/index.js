@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from "axios"
-
+import axios from 'axios'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -41,43 +40,29 @@ export default new Vuex.Store({
   },
   actions: {
     loadList(store) {
-       this.$http.get("https://baojia.chelun.com/v2-car-getMasterBrandList.html").then(res => {
+       axios.get("https://baojia.chelun.com/v2-car-getMasterBrandList.html").then(res => {
         store.commit({ type: "getList", list: res.data.data })
       })
     },
     // 渲染城市的列表
     gt(store) {
-<<<<<<< HEAD
-      this.$http.get("https://baojia.chelun.com/v1-city-alllist.html").then(res => {
-        // console.log(res)
-=======
       // this.$http
       axios.get("https://baojia.chelun.com/v1-city-alllist.html").then(res => {
->>>>>>> f8ca6833ae20077d25424d47bd21123874a3adab
         store.commit({ type: "getCityList", cityList: res.data.data })
-
       })
     },
     loadNav(store, actions) {
-<<<<<<< HEAD
-      this.$http.get(`https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID=${actions}`).then(res => {
-=======
-      // this.$http
+
       axios.get(`https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID=${actions}`).then(res => {
->>>>>>> f8ca6833ae20077d25424d47bd21123874a3adab
+
         store.commit({ type: "getNav", nav: res.data.data })
       })
     },
     cityL(store, payload) {
       let id = this.state.id;
       console.log(id);
-<<<<<<< HEAD
-      this.$http.get(`https://baojia.chelun.com/v1-city-alllist.html`, { params: { provinceid: id } }).then(res => {
-=======
-      // this.$http
       axios.get(`https://baojia.chelun.com/v1-city-alllist.html`, { params: { provinceid: id } }).then(res => {
->>>>>>> f8ca6833ae20077d25424d47bd21123874a3adab
-        console.log(res)
+
         store.commit({ type: 'getCityIndex', cityIndex: res.data.data })
       })
     }

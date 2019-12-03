@@ -49,11 +49,7 @@ export default {
     };
   },
   created() {
-<<<<<<< HEAD
-   this.$http
-=======
     this.$http
->>>>>>> f8ca6833ae20077d25424d47bd21123874a3adab
       .get(
         `https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.$route.params.id}`
       )
