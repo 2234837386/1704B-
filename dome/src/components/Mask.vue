@@ -12,7 +12,7 @@
           @click="()=>{$router.push(`/details/${a.SerialID}`)}"
         >
           <dt>
-            <img v-lazy="a.Picture" alt />
+            <img v-lazy="$getUrl(a.Picture)" alt />
           </dt>
           <dd>
             <span>{{a.AliasName}}</span>
@@ -84,25 +84,28 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0 1rem;
-    box-sizing: border-box;
     .item {
       width: 100%;
-      height: 4rem;
+      height: 5rem;
       display: flex;
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 0.08rem solid #ddd;
       padding: 0.1rem;
       box-sizing: border-box;
+      &:last-child {
+        border-bottom: 0;
+      }
       dt {
-        width: 15%;
+        width: 30%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-left: 1rem;
+        box-sizing: border-box;
         flex-shrink: 0;
         img {
-          width: 4.5rem;
-          height: 3.5rem;
+          width: 5.5rem;
+          height: 80%;
           display: block;
           flex-shrink: 0;
         }

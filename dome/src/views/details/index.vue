@@ -181,12 +181,13 @@ export default {
   // align-items: center;
   i {
     width: 100%;
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
     border-top: 1px solid #ccc;
     color: #09f;
-    font-size: 20px;
+    font-size: 1.2rem;
+    font-style: normal;
   }
   span,
   li {

@@ -11,10 +11,10 @@
             v-for="(a,i) in list.filter(z=>z.Spelling.slice(0,1)===item)"
             :key="i"
             :data-id="a.MasterID"
-            @click="indfn(a)"
+            @click.prevent="indfn(a)"
           >
             <dt>
-              <img v-lazy="a.CoverPhoto" alt />
+              <img v-lazy="$getUrl(a.CoverPhoto)" alt />
             </dt>
             <dd>
               <b>{{a.Name}}</b>
@@ -97,11 +97,14 @@ export default {
     box-sizing: border-box;
     .item {
       width: 100%;
-      height: 4rem;
+      height: 3rem;
       display: flex;
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 0.08rem solid #ddd;
       padding: 0.1rem;
       box-sizing: border-box;
+      &:last-child {
+        border-bottom: 0;
+      }
       dt {
         width: 15%;
         height: 100%;
@@ -110,7 +113,7 @@ export default {
         align-items: center;
         img {
           width: 3rem;
-          height: 3rem;
+          height: 90%;
           display: block;
         }
       }
