@@ -1,18 +1,19 @@
 <template>
   <div id="up" :class="{active:ismask}">
-    <div class="header">自动定位</div>
-    <div class="bei">北京</div>
-    <div class="heade">省份</div>
-
-    <div
-      @click="show(item.CityID)"
-      v-for="(item,index) in cityList"
-      :key="index"
-      class="con"
-      :dataId="item.CityID"
-    >
-      {{item.CityName}}
-      <span class="iconfont icon-angle-right"></span>
+    <div class="auto">
+      <div class="header">自动定位</div>
+      <div class="bei">北京</div>
+      <div class="heade">省份</div>
+      <div
+        @click="show(item.CityID)"
+        v-for="(item,index) in cityList"
+        :key="index"
+        class="con"
+        :dataId="item.CityID"
+      >
+        {{item.CityName}}
+        <span class="iconfont icon-angle-right"></span>
+      </div>
     </div>
     <Left :isShow="isShow" />
   </div>
@@ -63,9 +64,17 @@ export default {
   position: absolute;
   left: 0;
   bottom: 0;
-  overflow-y: scroll;
+  overflow: hidden;
+  overflow-y: auto;
   transform: translateY(100%);
   transition: all 1s ease;
+  .auto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
   &.active {
     transform: translateY(0%);
   }
@@ -96,6 +105,7 @@ export default {
   line-height: 45px;
   display: flex;
   position: relative;
+  flex-shrink: 0;
 }
 .con .icon-angle-right {
   position: absolute;
