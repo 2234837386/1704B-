@@ -41,27 +41,27 @@ export default new Vuex.Store({
   },
   actions: {
     loadList(store) {
-      axios.get("https://baojia.chelun.com/v2-car-getMasterBrandList.html").then(res => {
+       this.$http.get("https://baojia.chelun.com/v2-car-getMasterBrandList.html").then(res => {
         store.commit({ type: "getList", list: res.data.data })
       })
     },
     // 渲染城市的列表
     gt(store) {
-      axios.get("https://baojia.chelun.com/v1-city-alllist.html").then(res => {
+      this.$http.get("https://baojia.chelun.com/v1-city-alllist.html").then(res => {
         // console.log(res)
         store.commit({ type: "getCityList", cityList: res.data.data })
 
       })
     },
     loadNav(store, actions) {
-      axios.get(`https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID=${actions}`).then(res => {
+      this.$http.get(`https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID=${actions}`).then(res => {
         store.commit({ type: "getNav", nav: res.data.data })
       })
     },
     cityL(store, payload) {
       let id = this.state.id;
       console.log(id);
-      axios.get(`https://baojia.chelun.com/v1-city-alllist.html`, { params: { provinceid: id } }).then(res => {
+      this.$http.get(`https://baojia.chelun.com/v1-city-alllist.html`, { params: { provinceid: id } }).then(res => {
         console.log(res)
         store.commit({ type: 'getCityIndex', cityIndex: res.data.data })
       })

@@ -52,7 +52,7 @@ export default {
     },
     created(){
         this.id=this.$route.query.SerialID
-        axios.get(`https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.id}`).then(res=>{
+        this.$http.get(`https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.id}`).then(res=>{
             this.list=res.data.data;
             // console.log(this.list)
             this.carlist=this.list.list;
