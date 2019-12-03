@@ -42,8 +42,7 @@ export default {
   },
   created() {
     this.id = this.$route.query.SerialID;
-    axios
-      .get(
+    this.$http.get(
         `https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.id}`
       )
       .then(res => {

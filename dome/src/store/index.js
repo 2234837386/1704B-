@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import axios from "axios"
 
 Vue.use(Vuex)
 
@@ -47,13 +47,14 @@ export default new Vuex.Store({
     },
     // 渲染城市的列表
     gt(store) {
+      // this.$http
       axios.get("https://baojia.chelun.com/v1-city-alllist.html").then(res => {
-        // console.log(res)
         store.commit({ type: "getCityList", cityList: res.data.data })
 
       })
     },
     loadNav(store, actions) {
+      // this.$http
       axios.get(`https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID=${actions}`).then(res => {
         store.commit({ type: "getNav", nav: res.data.data })
       })
@@ -61,6 +62,7 @@ export default new Vuex.Store({
     cityL(store, payload) {
       let id = this.state.id;
       console.log(id);
+      // this.$http
       axios.get(`https://baojia.chelun.com/v1-city-alllist.html`, { params: { provinceid: id } }).then(res => {
         console.log(res)
         store.commit({ type: 'getCityIndex', cityIndex: res.data.data })
