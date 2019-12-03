@@ -27,6 +27,7 @@ export default {
   position: fixed;
   right: 0;
   bottom: 0;
+  overflow: hidden;
   overflow-y: auto;
   transform: translateX(100%);
   transition: all 1s ease;

@@ -35,7 +35,6 @@
         <button class="btn">询问最低价</button>
       </div>
     </div>
-
     <div class="dian">
       <p>经销报价商家</p>
     </div>
