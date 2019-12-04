@@ -7,7 +7,7 @@
         <span v-if="list.market_attribute">指导价：{{list.market_attribute.official_refer_price}}</span>
       </p>
 
-      <button v-if="list" @click="xiao">{{list.BottomEntranceTitle}}</button>
+      <button v-if="list">{{list.BottomEntranceTitle}}</button>
     </div>
     <div class="timemsg">
       <span
@@ -35,7 +35,6 @@
       </div>
     </div>
     <div class="btn" v-if="list.BottomEntranceTitle">
-   
       <b>{{list.BottomEntranceTitle}}</b>
       <span>本地经销商为您报价</span>
     </div>
@@ -49,7 +48,6 @@ export default {
     return {
       list: [],
       carlist: [],
-
       ind: 0,
       gets: [],
       carId: ""
@@ -77,7 +75,6 @@ export default {
           arr.push(item.market_attribute.year);
         });
       return arr;
-
     },
     listEach() {
       let list = JSON.stringify(this.list.list);
@@ -88,7 +85,6 @@ export default {
           return this.getYear[this.ind] === item.market_attribute.year;
         })
       );
-
     }
   },
   methods: {
@@ -180,12 +176,9 @@ export default {
     flex-shrink: 0;
     span {
       margin: 0 10px;
-      &active {
+      &.active {
         color: #09f;
       }
-    }
-    span:first-child {
-      color: #09f;
     }
     .inhale_type {
       width: 100%;
