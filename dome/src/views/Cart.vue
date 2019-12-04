@@ -5,11 +5,11 @@
     </div>
     <div class="had" @click="showI">
       <div class="img">
-        <img src="http://img2.bitautoimg.com/autoalbum/files/20180131/094/0319300949_3.jpg" alt />
+        <img :src="Picture" alt />
       </div>
       <div class="content">
-        <h4>阿斯顿·马丁DB11</h4>
-        <p>2019款 4.0T v8 Volante特别版</p>
+        <h4>{{AliasName}}</h4>
+        <p>{{carName}}</p>
       </div>
       <div class="spn">
         <span class="iconfont icon-angle-right hh"></span>
@@ -35,7 +35,6 @@
         <button class="btn">询问最低价</button>
       </div>
     </div>
-
     <div class="dian">
       <p>经销报价商家</p>
     </div>
@@ -55,9 +54,20 @@ export default {
   data() {
     return {
       ismask: false,
-      isZhan: false
+      isZhan: false,
+      AliasName: "",
+      Picture: "",
+      carId: "",
+      carName: ""
     };
   },
+  created() {
+    this.Picture = this.$route.query.Picture;
+    this.AliasName = this.$route.query.AliasName;
+    this.carId = this.$route.query.carId;
+    this.carName = this.$route.query.carName;
+  },
+
   methods: {
     tan() {
       this.ismask = !this.ismask;
@@ -123,6 +133,7 @@ export default {
 .from .biao p {
   font-size: 12px;
   color: #666;
+
   line-height: 20px;
 }
 .message {

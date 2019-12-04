@@ -78,9 +78,10 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   h3 {
     width: 100%;
-    height: 1.5rem;
+    height: 1rem;
     display: flex;
     align-items: center;
     background: #f5f5f5;
@@ -88,6 +89,7 @@ export default {
     font-weight: normal;
     font-size: 1rem;
     box-sizing: border-box;
+    flex-shrink: 0;
   }
   .main {
     width: 100%;
@@ -97,11 +99,12 @@ export default {
     box-sizing: border-box;
     .item {
       width: 100%;
-      height: 3rem;
+      height: 3.5rem;
       display: flex;
       border-bottom: 0.08rem solid #ddd;
-      padding: 0.1rem;
+      padding: 0.5rem;
       box-sizing: border-box;
+      flex-shrink: 0;
       &:last-child {
         border-bottom: 0;
       }
@@ -113,7 +116,7 @@ export default {
         align-items: center;
         img {
           width: 3rem;
-          height: 90%;
+          height: 80%;
           display: block;
         }
       }

@@ -65,9 +65,10 @@ export default {
 }
 .dome {
   width: 100%;
-  flex: 1;
+  
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   h3 {
     width: 100%;
     height: 1.5rem;
@@ -78,10 +79,13 @@ export default {
     font-weight: normal;
     font-size: 1rem;
     box-sizing: border-box;
+    flex-shrink: 0;
   }
   .main {
     width: 100%;
     display: flex;
+    flex-shrink: 0;
+    flex:1;
     flex-direction: column;
     .item {
       width: 100%;
@@ -90,6 +94,7 @@ export default {
       border-bottom: 0.08rem solid #ddd;
       padding: 0.1rem;
       box-sizing: border-box;
+      flex-shrink: 0;
       &:last-child {
         border-bottom: 0;
       }
@@ -115,7 +120,6 @@ export default {
         display: flex;
         align-items: center;
         text-indent: 0.5rem;
-        display: flex;
         flex-direction: column;
         padding: 0 0.5rem;
         box-sizing: border-box;
