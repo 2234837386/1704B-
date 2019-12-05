@@ -1,5 +1,5 @@
 <template>
-  <div id="mask" :class="{active:isMask}">
+  <div id="mask" :class="{active:isMask}" @touchstart="startfn" @touchend="endfn">
     <div class="dome" v-for="(item,index) in maskList" :key="index">
       <h3 @click="editInd(false)">{{item.GroupName}}</h3>
       <div class="main">
@@ -28,7 +28,12 @@ export default {
   props: {},
   components: {},
   data() {
-    return {};
+    return {
+      startX: 0,
+      startY: 0,
+      endX: 0,
+      endY: 0
+    };
   },
   computed: {
     ...mapState({
@@ -39,7 +44,15 @@ export default {
   methods: {
     ...mapMutations({
       editInd: "home/editInd"
-    })
+    }),
+    startfn(e) {
+      this.startX = e.changedTouches[0].pageX;
+      this.startY = e.changedTouches[0].pageY;
+    },
+    endfn(e) {
+      this.endX = e.changedTouches[0].pageX;
+      this.endY = e.changedTouches[0].pageY;
+    }
   },
   created() {},
   mounted() {}
