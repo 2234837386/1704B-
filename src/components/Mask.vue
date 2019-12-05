@@ -66,7 +66,6 @@ export default {
 }
 .dome {
   width: 100%;
-
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -84,6 +83,7 @@ export default {
   }
   .main {
     width: 100%;
+    flex: 1;
     display: flex;
     flex-shrink: 0;
     flex: 1;
@@ -103,6 +103,9 @@ export default {
         width: 30%;
         height: 100%;
         display: flex;
+        flex-direction: column;
+        padding-left: 1rem;
+        box-sizing: border-box;
         justify-content: center;
         align-items: center;
         padding-left: 1rem;

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # dome
+=======
+# pact
+>>>>>>> a24a03f8c11eca18ccda81a757b57d163cb5f357
 
 ## Project setup
 ```
