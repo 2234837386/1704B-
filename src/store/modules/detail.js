@@ -1,22 +1,22 @@
-import { carList } from '@/servicer/index'
-const state = {
-    allList: []
+import {carList} from '../../servicer/index'
+const state={
+    allList:[]
 }
-const mutations = {
-    getList(state, payload) {
-        state.allList = payload
+const mutations={
+    getList(state,payload){
+        state.allList=payload
     }
 }
-const actions = {
-    async carList({ commit }, actions) {
-        let res = await carList(actions)
-        commit('getList', res.data.data)
-        console.log(res)
-    }
+const actions={
+   async carList({commit},actions){
+       let res=await carList(actions)
+       commit('getList',res)
+       console.log(res)
+   }
 }
-export default {
+export default{
     state,
     mutations,
     actions,
-    namespaced: true
+    namespaced:true
 }

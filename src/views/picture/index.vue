@@ -3,29 +3,46 @@
     <div class="p_top">
       <!-- @click="carcolor"  {{color?color:'颜色'}} -->
       <li>
-          {{color}}
+          颜色
         <i class="iconfont icon-angle-down"></i>
       </li>
       <!--  @click="carstyle"  {{cars?cars:'车款'}}-->
       <li>
-          {{cars}}
+          车款
         <i class="iconfont icon-angle-down"></i>
       </li>
     </div>
   </div>
 </template>
 <script>
+import {mapState,mapActions} from 'vuex'
 export default {
   props: {},
   components: {},
   data() {
     return {
-      color: "颜色",
-      cars: "车款"
+      showColor:false
     };
   },
-  computed: {},
-  methods: {},
+  computed: {
+    ...mapState({
+       imagesDate:state=>state.carimage. imagesDate,
+       EnlargentImageflag:state=>state.carimage.EnlargentImageflag,
+       colorId:state=>state.carimage.colorId,
+       carId:state=>state.carimage.carId
+    })
+  },
+  methods: {
+    ...mapActions({
+      carImage:'carimage/carImage'
+    }),
+    setColor(){
+      this.showColor=true;
+    },
+    setType(){
+      this.$router.push("/type?serialId"+this.serialId)
+    }
+  },
   created() {},
   mounted() {}
 };

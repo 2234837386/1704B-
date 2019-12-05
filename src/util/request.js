@@ -1,42 +1,46 @@
-import axios from "axios";
-const instance = axios.create({
-	baseURL: "http://baojia.chelun.com",
-	timeout: 1000
-})
-// instance.interceptors.request.use(function (config) {
-// 	return config;
-// }, function (error) {
-// 	return Promise.reject(error)
-// }
-// )
-// Add a request interceptor
+const axios =require('axios')
 
-axios.interceptors.request.use(function (config) {
-	return config;
-}, function (error) {
-	return Promise.reject(error)
-}
-)
+// GET request for remote image
+// 创建axios实例
+
+const instance = axios.create({
+    baseURL: 'https://baojia.chelun.com',
+    timeout: 1000,
+    // headers: {'X-Custom-Header': 'foobar'}
+  })
+
+//   请求拦截器
+// Add a request interceptor
+instance.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  });
+ 
 // Add a response interceptor
-axios.interceptors.response.use(function (response) {
-	// Do something with response data
-	if (reponse.status === 200) {
-		if (reponse.data.code === 1) {
-			return reponse.data.data
-		} else {
-			return {
-				msg: "数据有误"
-			}
-		}
-	} else {
-		this.$notify({
-			type: "warning",
-			message: Response.type
-		});
-	}
-	return response;
-}, function (error) {
-	// Do something with response error
-	return Promise.reject(error);
-});
-export default instance;
+instance.interceptors.response.use(function (response) {
+    // Do something with response data
+    // 自己写的
+    if(response.status==200){
+        if(response.data.code==1){
+            return response.data.data
+        }else{
+            return {
+                msg:'数据错误'
+            }
+        }
+    }else{
+        this.$notify({
+            type:'warning',
+            message:response.type
+        });
+    }
+    
+    return response;
+  }, function (error) {
+    // Do something with response error
+    return Promise.reject(error);
+  });
+  export default instance;
