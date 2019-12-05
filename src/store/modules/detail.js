@@ -10,7 +10,7 @@ const mutations = {
 const actions = {
     async carList({ commit }, actions) {
         let res = await carList(actions)
-        commit('getList', res.data.data)
+        commit('getList', res)
         console.log(res)
     }
 }
