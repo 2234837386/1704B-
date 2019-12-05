@@ -5,9 +5,3 @@ export let getMasterBrandList = () => {
 export let getMaskList = (MasterID) => {
     return request("/v2-car-getMakeListByMasterBrandId.html", { params: { MasterID } })
 }
-export let carList=(SerialID)=>{
-    return request('/v2-car-getInfoAndListById.html',{params:{SerialID}})
-}
-export let carColors=(SerialID)=>{
-    return require(``)
-}
