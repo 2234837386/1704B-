@@ -4,19 +4,30 @@
             <div class="header">自动定位</div>
             <div class="bei">北京</div>
             <div class="heade">省份</div>
-            <div class="con" v-for="(item,index) in cityData" :key="index">{{item.CityName}}</div>
-            <!-- <Left :isShow="isShow" /> -->
+            <div class="con" @click="showI(id)" v-for="(item,index) in cityData" :key="index">{{item.CityName}}
+              <span class="iconfont icon-angle-right hh"></span>
+            </div>
+            <Left :isShow="isShow" />
         </div>
         
   </div>
 </template>
 
 <script>
+import Left from './Left'
 import { mapState, mapActions } from "vuex";
 export default {
+  components: {
+     Left
+  },
   props: {
     ismask: {
       type: Boolean
+    }
+  },
+   data() {
+    return {
+      isShow: false
     }
   },
   computed: {
@@ -27,7 +38,10 @@ export default {
   methods:{
        ...mapActions({
            getMasterList:'home/getMasterList'
-       })
+       }),
+       showI(){
+           this.isShow = true;
+       }
   },
   mounted () {
       this.getMasterList()
@@ -46,7 +60,7 @@ export default {
   overflow: hidden;
   overflow-y: auto;
   transform: translateY(100%);
-  transition: all 1s ease;
+  transition: all 2s ease;
   .auto {
     width: 100%;
     height: 100%;
@@ -85,6 +99,11 @@ export default {
   display: flex;
   position: relative;
   flex-shrink: 0;
+  .hh {   
+        font-size: 25px;
+        color: #cccccc
+  
+}
 }
 .con .icon-angle-right {
   position: absolute;
