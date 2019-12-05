@@ -30,7 +30,7 @@
         </li>
         <li @click="tan">
           <span>城市</span>
-          <i class="iconfont icon-angle-right"></i>
+          <i class="iconfont icon-angle-right dd"></i>
         </li>
         <button class="btn">询问最低价</button>
       </div>
@@ -40,12 +40,11 @@
       <p>经销报价商家</p>
     </div>
     <Up :ismask="ismask" />
-    <!-- <Money :isZhan="isZhan" /> --> 
+  
   </div>
 </template>
 
 <script>
-// import Money from "../components/Money";
 import Up from "../components/Up";
 export default {
   components:{
@@ -60,9 +59,7 @@ export default {
     tan() {
       this.ismask = !this.ismask;
     },
-    // showI() {
-    //   this.isZhan = !this.isZhan;
-    // }
+    
   }
 };
 </script>
@@ -103,9 +100,16 @@ export default {
   margin-top: 3px;
   line-height: 30px;
 }
-.hh {
-  text-align: center;
-  margin-top: 40px;
+.hh {   
+        text-align: center;
+        margin-top: 35px;
+        font-size: 30px;
+       color: #d3c7c7; 
+       font-weight: normal;
+}
+.dd {   
+        font-size: 23px;
+        color: #d3c7c7; 
 }
 .from {
   width: 100%;

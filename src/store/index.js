@@ -3,16 +3,16 @@ import Vuex from 'vuex'
 
 import createLogger from "vuex/dist/logger"
 // 首先引入子模块
-import home from './modules/home'
+import cart from './modules/cart'
 import city from './modules/city'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-     modules:{
-        home,
-        city
-     },
-     plugins:[createLogger()]
-  
+   modules: {
+      cart,
+      city
+   },
+   plugins: [createLogger()]
+
 })
