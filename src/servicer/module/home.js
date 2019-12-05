@@ -8,3 +8,6 @@ export let getMaskList = (MasterID) => {
 export let carList=(SerialID)=>{
     return request('/v2-car-getInfoAndListById.html',{params:{SerialID}})
 }
+export let carColors=(SerialID)=>{
+    return require(``)
+}

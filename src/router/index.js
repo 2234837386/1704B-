@@ -17,6 +17,10 @@ const routes = [
     name: 'detail',
     component: () => import('../views/detail')
   },
+  {
+    path:'/picture',
+    component:()=>import('../views/picture')
+  },
  
   {
     path: '/',

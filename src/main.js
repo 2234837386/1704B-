@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vueLazyload from "vue-lazyload"
-
+import './fonts/iconfont.css'
 Vue.component("Floor", () => import("@/components/Floor"))
 Vue.component("aMask", () => import("@/components/Mask"))
 Vue.config.productionTip = false

@@ -1,7 +1,8 @@
 <template>
   <div class="detail_page">
     <!-- {{Alllist}} -->
-    <img class="banimg" :src="Alllist.CoverPhoto" />
+    <!-- 点击img跳转到pictures页面 -->
+    <img class="banimg" :src="Alllist.CoverPhoto" @click="tiaoimg(Alllist)"/>
     <div class="carmsg">
       <p>
         <b v-if="Alllist.market_attribute">{{Alllist.market_attribute.dealer_price}}</b> 
@@ -75,7 +76,15 @@ export default {
   methods: {
     ...mapActions({
       carList: "detail/carList"
-    })
+    }),
+    tiaoimg(Alllist){
+      this.$router.push({
+        path: "/picture",
+        query :{
+          SerialID: this.$route.params.id
+        }
+      });
+    }
   },
   created() {
     
