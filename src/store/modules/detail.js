@@ -1,4 +1,4 @@
-import {carList} from '../../service/index'
+import {carList} from '../../servicer/index'
 const state={
     allList:[]
 }
@@ -10,8 +10,8 @@ const mutations={
 const actions={
    async carList({commit},actions){
        let res=await carList(actions)
-       commit('getList',res)
-    //    console.log(res)
+       commit('getList',res.data.data)
+       console.log(res)
    }
 }
 export default{

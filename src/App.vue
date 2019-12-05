@@ -1,6 +1,6 @@
 <template>
-  <div id='app'> 
-    <router-view></router-view>
+  <div class="App">
+    <router-view />
   </div>
 </template>
 <script>
@@ -8,29 +8,13 @@ export default {
   props:{
 
   },
-  components:{
-
-  },
-  data(){
-    return {
-
-    }
-  },
-  computed:{
-
-  },
-  methods:{
-
-  },
-  created(){
-
-  },
-  mounted(){
-
-  }
-}
+  computed: {},
+  methods: {},
+  created() {},
+  mounted() {}
+};
 </script>
-<style lang="scss">
+<style  lang="scss">
 * {
   margin: 0;
   padding: 0;
@@ -45,8 +29,14 @@ export default {
 
 }
 html,
-body {
+body,
+.App {
   width: 100%;
   height: 100%;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 </style>

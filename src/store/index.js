@@ -1,13 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-//引入子模块
-import detail from './module/detail'
-import creareLogger from 'vuex/dist/logger'
+
+import createLogger from "vuex/dist/logger"
+import home from "./modules/home"
+import detail from './modules/detail'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: {//拆分store，把vuex细化封装
+  modules: {
+    home,
     detail
   },
- plugins:[creareLogger()]
+  plugins: [
+    createLogger()
+  ]
 })

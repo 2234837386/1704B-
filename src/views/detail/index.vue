@@ -1,10 +1,10 @@
 <template>
   <div class="detail_page">
     <!-- {{Alllist}} -->
-    <img class="banimg" :src="Alllist.CoverPhoto"/>
+    <img class="banimg" :src="Alllist.CoverPhoto" />
     <div class="carmsg">
       <p>
-        <b v-if="Alllist.market_attribute">{{Alllist.market_attribute.dealer_price}}</b>
+        <b v-if="Alllist.market_attribute">{{Alllist.market_attribute.dealer_price}}</b> 
         <span v-if="Alllist.market_attribute">指导价：{{Alllist.market_attribute.official_refer_price}}</span>
       </p>
 
