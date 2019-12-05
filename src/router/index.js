@@ -1,52 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+// import Xiang from '../views/xiang'
 
 Vue.use(VueRouter)
+
 const routes = [
   {
     path: '/home',
     name: 'home',
-    component: () => import('../views/Home.vue')
-  },
-    {
-      path:'/cart',
-      component:()=>import('../views/Cart.vue')
-    },
- 
-  {
-    path: '/details/:id',
-
-    component: () => import('../views/details')
+    component: Home
   },
   {
-    path: '/mask',
-    component: () => import('../views/pictures/ban.vue')
+    path: '/detail',
+    name: 'detail',
+    component: () => import('../views/detail')
   },
   {
-    path: '/picture',
-    component: () => import('../views/pictures')
-  },
-  {
-    path:'/clors',
-    component:()=>import('../views/pictures/allcolor.vue')
- },
- {
-  path:'/carstyle',
-  component:()=>import('../views/pictures/carstyle.vue')
-},
-{
-  path:'/carconte',
-  component:()=>import('../views/pictures/carcont.vue')
-},
-  {
-    path: '/cart',
-    component: () => import('../views/Cart.vue')
-  },
-  {
-    path: '*',
-    redirect: '/home'
+    path:'/',
+    redirect:'/detail'
   }
-
 ]
 
 const router = new VueRouter({

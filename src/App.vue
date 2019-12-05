@@ -1,23 +1,34 @@
 <template>
-    <router-view/>
+  <div id='app'> 
+    <router-view></router-view>
+  </div>
 </template>
 <script>
-import { mapActions } from "vuex";
 export default {
-  props: {},
-  components: {},
-  data() {
-    return {};
+  props:{
+
   },
-  computed: {},
-  methods: {
-    ...mapActions(["loadList"])
+  components:{
+
   },
-  created() {
-    this.loadList();
+  data(){
+    return {
+
+    }
   },
-  mounted() {}
-};
+  computed:{
+
+  },
+  methods:{
+
+  },
+  created(){
+
+  },
+  mounted(){
+
+  }
+}
 </script>
 <style lang="scss">
 * {
@@ -25,8 +36,13 @@ export default {
   padding: 0;
   list-style: none;
   text-decoration: none;
+  font-weight: normal;
+  font-style: normal;
   user-select: none;
   box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: auto;
+
 }
 html,
 body {
