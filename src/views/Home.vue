@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="list">
-      <div class="dome" v-for="(item,index) in homeList" :key="index" :id="item">
+      <div class="dome" v-for="(item,index) in homeList" :key="index" :id="item.lets">
         <h3>{{item.lets}}</h3>
         <div class="main">
           <dl
