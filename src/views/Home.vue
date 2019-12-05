@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
   props: {},
   components: {},

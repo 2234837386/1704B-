@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+// import Xiang from '../views/xiang'
 
 Vue.use(VueRouter)
 
@@ -7,16 +9,23 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: () => import("@/views/Home")
+
+    component: Home
   },
   {
     path: '/detail/:id',
     name: 'detail',
-    component: () => import("@/views/Detail")
+    component: () => import('../views/detail')
+  },
+  {
+    path: '/picture',
+    name: "picture",
+    component: () => import('../views/picture')
   },
   {
     path: '/',
     redirect: "/home"
+
   }
 ]
 
