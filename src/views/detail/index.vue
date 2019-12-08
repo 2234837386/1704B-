@@ -1,15 +1,12 @@
 <template>
   <div class="detail_page">
-    <!-- {{Alllist}} -->
-    <!-- 点击img跳转到pictures页面 -->
-    <img class="banimg" :src="Alllist.CoverPhoto" @click="tiaoimg(Alllist)" />
+    <img class="banimg" v-lazy="Alllist.CoverPhoto" @click="tiaoimg(Alllist)" />
     <div class="carmsg">
       <p>
         <b v-if="Alllist.market_attribute">{{Alllist.market_attribute.dealer_price}}</b>
         <span v-if="Alllist.market_attribute">指导价：{{Alllist.market_attribute.official_refer_price}}</span>
       </p>
-
-      <button v-if="Alllist">{{Alllist.BottomEntranceTitle}}</button>
+      <button v-if="Alllist" @click="()=>{$router.push('/cart')}">{{Alllist.BottomEntranceTitle}}</button>
     </div>
     <div class="timemsg">
       <span
@@ -32,7 +29,7 @@
         <i
           class="ibtn"
           v-if="Alllist.BottomEntranceTitle"
-          @click="xiao(item.car_id,item.car_name)"
+          @click="()=>{$router.push('/cart')}"
         >{{Alllist.BottomEntranceTitle}}</i>
       </div>
     </div>

@@ -52,7 +52,7 @@ export default {
     endfn(e) {
       this.endX = e.changedTouches[0].pageX;
       this.endY = e.changedTouches[0].pageY;
-      if (this.endX - this.startX > 80 && this.endY - this.startY < 50) {
+      if (this.endX - this.startX > 50 && this.startY - this.endY < 50) {
         this.editInd(false);
       }
     }

@@ -20,8 +20,13 @@ const routes = [
     component: () => import("@/views/picture")
   },
   {
+    path: "/list",
+    name: "list",
+    component: () => import("@/views/List")
+  },
+  {
     path: '/cart',
-    redirect: "cart",
+    name: "cart",
     component: () => import("@/views/Cart")
   },
   {

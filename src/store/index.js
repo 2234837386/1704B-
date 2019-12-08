@@ -5,7 +5,8 @@ import createLogger from "vuex/dist/logger"
 import home from "./modules/home"
 import detail from './modules/detail'
 import cart from './modules/cart'
-import city from './modules/city'
+// import city from './modules/city'
+import img from './modules/img'
 
 Vue.use(Vuex)
 
@@ -13,8 +14,9 @@ export default new Vuex.Store({
   modules: {
     home,
     detail,
-    city,
-    cart
+    // city,
+    cart,
+    img
   },
   plugins: [
     createLogger()

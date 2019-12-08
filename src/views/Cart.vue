@@ -9,7 +9,7 @@
       </div>
       <div class="content">
         <!-- <h4>{{AliasName}}</h4>
-        <p>{{carName}}</p> -->
+        <p>{{carName}}</p>-->
       </div>
       <div class="spn">
         <span class="iconfont icon-angle-right hh"></span>
@@ -30,7 +30,7 @@
         </li>
         <li @click="tan">
           <span>城市</span>
-          <i class="iconfont icon-angle-right"></i>
+          <i class="iconfont icon-angle-right dd"></i>
         </li>
         <button class="btn">询问最低价</button>
       </div>
@@ -40,29 +40,24 @@
       <p>经销报价商家</p>
     </div>
     <Up :ismask="ismask" />
-    <!-- <Money :isZhan="isZhan" /> --> 
   </div>
 </template>
 
 <script>
-// import Money from "../components/Money";
 import Up from "../components/Up";
 export default {
-  components:{
-      Up
+  components: {
+    Up
   },
-   data(){
-       return {
-          ismask:false
-       }
-   },
+  data() {
+    return {
+      ismask: false
+    };
+  },
   methods: {
     tan() {
       this.ismask = !this.ismask;
-    },
-    // showI() {
-    //   this.isZhan = !this.isZhan;
-    // }
+    }
   }
 };
 </script>
@@ -105,7 +100,14 @@ export default {
 }
 .hh {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 35px;
+  font-size: 30px;
+  color: #d3c7c7;
+  font-weight: normal;
+}
+.dd {
+  font-size: 23px;
+  color: #d3c7c7;
 }
 .from {
   width: 100%;

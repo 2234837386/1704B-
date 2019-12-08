@@ -1,25 +1,34 @@
-<template>
-  <div id="mask" :class="{active:isShow}">
-    <div v-for="(item,index) in cityIndex" :key="index" class="cy">{{item.CityName}}</div>
-  </div>
-</template>
+  <template>
+      <div id="mask" :class="{active:isShow}">
+            {{cityyData}}
+        </div>
+  </template>
 
 <script>
-import { mapState } from "vuex";
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
-  props: {
+     props: {
     isShow: {
       type: Boolean
     }
   },
   computed: {
-    ...mapState(["cityIndex"])
+      ...mapState({
+          cityData:state=> state.city.cityList,
+      })
   },
-  created() {}
-};
+  methods: {
+      ...mapActions({
+          getCityList:'city/getCityList'
+      })
+  },
+  mounted(){
+        this.getCityList()
+    }
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 #mask {
   width: 80%;
   height: 100%;
@@ -30,16 +39,9 @@ export default {
   overflow: hidden;
   overflow-y: auto;
   transform: translateX(100%);
-  transition: all 1s ease;
+  transition: all 2s ease;
   &.active {
     transform: translateX(0%);
   }
-}
-.cy {
-  width: 100%;
-  height: 45px;
-  padding: 0 10px;
-  line-height: 45px;
-  border-bottom: 1px solid #eeeeee;
 }
 </style>
