@@ -22,7 +22,8 @@ export default {
           getCityList:'city/getCityList'
       }),
        setName(CityName){
-            this.$router.push({path:"/cart",query:{CityName}})
+            this.$router.push({query:{CityName}})
+            location.reload()
         }
   },
   mounted(){
