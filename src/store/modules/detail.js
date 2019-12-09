@@ -11,7 +11,7 @@ const actions={
    async carList({commit},actions){
        let res=await carList(actions)
        commit('getList',res)
-       console.log(res)
+    //    console.log(res)
    }
 }
 export default{

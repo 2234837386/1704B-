@@ -2,7 +2,7 @@
   <div class="picture_page">
     <div class="p_top">
       <!-- @click="carcolor"  {{color?color:'颜色'}} -->
-      <li>
+      <li @click="colorBtn">
           颜色
         <i class="iconfont icon-angle-down"></i>
       </li>
@@ -12,21 +12,30 @@
         <i class="iconfont icon-angle-down"></i>
       </li>
     </div>
+    <div class="boxList">
+          <Serviceimg v-for="(item,index) in imagesDate" :key="index" :item='item'/>
+    </div>
   </div>
 </template>
 <script>
-import {mapState,mapActions} from 'vuex'
+import {mapState,mapActions,mapMutations} from 'vuex' 
+import Serviceimg from '../../components/Serviceimg'
 export default {
   props: {},
-  components: {},
+  components: {
+    Serviceimg
+  },
   data() {
     return {
       showColor:false
     };
   },
+  created() {
+    this.carImage(this.$route.query.SerialID)
+  },
   computed: {
     ...mapState({
-       imagesDate:state=>state.carimage. imagesDate,
+       imagesDate:state=>state.carimage. imagesData,
        EnlargentImageflag:state=>state.carimage.EnlargentImageflag,
        colorId:state=>state.carimage.colorId,
        carId:state=>state.carimage.carId
@@ -41,9 +50,17 @@ export default {
     },
     setType(){
       this.$router.push("/type?serialId"+this.serialId)
+    },
+    colorBtn(){
+      this.$router.push({
+        path:'/color',
+        query:{
+          SerialID:this.$route.query.SerialID
+        }
+      })
     }
   },
-  created() {},
+
   mounted() {}
 };
 </script>
@@ -54,6 +71,7 @@ export default {
   display: flex;
   flex-direction: column;
   background: #eee;
+  overflow-y: scroll;
   .p_top {
     width: 100%;
     height: 50px;
@@ -70,50 +88,8 @@ export default {
     }
   }
   .boxList {
-    width: 100%;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    .item {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      padding-bottom: 0.2rem;
-      box-sizing: border-box;
-      .main {
-        width: calc(100% / 3);
-        height: 7.6rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0.08rem;
-        box-sizing: border-box;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        flex-direction: column;
-        .mask {
-          width: 100%;
-          height: 7.6rem;
-          display: flex;
-          flex-direction: column;
-          background: rgba(0, 0, 0, 0.5);
-          padding: 25px;
-          p {
-            width: 100%;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-style: normal;
-            // font-weight: 1px;
-          }
-          p:first-child {
-            margin-bottom: 10px;
-          }
-        }
-      }
-    }
+   flex: 1;
+
   }
 }
 </style>

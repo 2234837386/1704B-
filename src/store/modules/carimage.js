@@ -1,20 +1,20 @@
 import {carImage} from '../../servicer/index'
 const state={
-    imagesDate:[],
+    imagesData:[],
     EnlargentImageflag:false,
     colorId:'',//选择车系颜色
     carId:''//选择车款
 }
 const mutations={
-    getImageDate(state,payload){
-        state.imagesDate=payload.map(item=>{
-            item.List.map(ite=>{
-                ite.Url=ite.Url.replace('{0',3)
-                return ite
-            })
-            return item
+    getImageData(state, payload) {
+        state.imagesData = payload.filter(item => {
+          item.List = item.List.map(ite => {
+            ite.Url = ite.Url.replace('{0}', 3)
+            return ite
+          })
+          return item
         })
-    },
+      },
     imgFlag(){
         state.EnlargentImageflag=true
     },
@@ -32,10 +32,12 @@ const actions={
             params.colorId=state.colorId;
         }
         if(state.carId){
-            params:carId=state.carId
+            params.carId=state.carId
         }
-        let res=(' getImageDate',res)
-        console.log(res)
+        let res=await carImage(params)
+        commit('getImageData',res)
+        // console.log(res)
+        console.log("img---",res)
     }
 }
 export default {

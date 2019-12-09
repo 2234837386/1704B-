@@ -26,11 +26,11 @@ const mutations = {
 const actions = {
     async getMasterBrandList({ commit }) {
         let res = await getMasterBrandList()
-        commit("setHomeList", res.data.data)
+        commit("setHomeList", res)
     },
     async getMaskList({ commit }, actions) {
         let res = await getMaskList(actions)
-        commit("setMaskList", res.data.data)
+        commit("setMaskList", res)
     }
 }
 export default {
