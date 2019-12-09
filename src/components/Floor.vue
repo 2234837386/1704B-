@@ -1,6 +1,5 @@
 <template>
   <div class="floor">
-    <a href="#A">#</a>
     <a :href="`#${item.lets}`" v-for="(item,index) in homeList" :key="index">{{item.lets}}</a>
   </div>
 </template>

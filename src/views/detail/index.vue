@@ -1,12 +1,15 @@
 <template>
   <div class="detail_page">
-    <img class="banimg" v-lazy="Alllist.CoverPhoto" @click="tiaoimg(Alllist)" />
+    <!-- {{Alllist}} -->
+    <!-- 点击img跳转到pictures页面 -->
+    <img class="banimg" :src="Alllist.CoverPhoto" @click="tiaoimg(Alllist)" />
     <div class="carmsg">
       <p>
         <b v-if="Alllist.market_attribute">{{Alllist.market_attribute.dealer_price}}</b>
         <span v-if="Alllist.market_attribute">指导价：{{Alllist.market_attribute.official_refer_price}}</span>
       </p>
-      <button v-if="Alllist" @click="()=>{$router.push('/cart')}">{{Alllist.BottomEntranceTitle}}</button>
+
+      <button v-if="Alllist">{{Alllist.BottomEntranceTitle}}</button>
     </div>
     <div class="timemsg">
       <span
@@ -29,13 +32,9 @@
         <i
           class="ibtn"
           v-if="Alllist.BottomEntranceTitle"
-          @click="()=>{$router.push('/cart')}"
+          @click="xiao(item.car_id,item.car_name)"
         >{{Alllist.BottomEntranceTitle}}</i>
       </div>
-    </div>
-    <div class="btn" v-if="Alllist.BottomEntranceTitle" @click="()=>{$router.push('/cart')}">
-      <b>{{Alllist.BottomEntranceTitle}}</b>
-      <span>本地经销商为您报价</span>
     </div>
   </div>
 </template>
@@ -85,6 +84,10 @@ export default {
           SerialID: this.$route.params.id
         }
       });
+    },
+    xiao(){
+       this.$router.push('/cart')
+      console.log(2131,'===============');
     }
   },
   created() {

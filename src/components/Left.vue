@@ -1,6 +1,6 @@
   <template>
       <div id="mask" :class="{active:isShow}">
-            {{cityyData}}
+            <div v-for="(item,index) in provinceidData" :key="index" class="cy" @click="setName(item.CityName)">{{item.CityName}}</div>
         </div>
   </template>
 
@@ -14,13 +14,17 @@ export default {
   },
   computed: {
       ...mapState({
-          cityData:state=> state.city.cityList,
+          provinceidData:state=>state.city.cityList,
       })
   },
   methods: {
       ...mapActions({
           getCityList:'city/getCityList'
-      })
+      }),
+       setName(CityName){
+            this.$router.push({query:{CityName}}),
+            location.reload()
+        }
   },
   mounted(){
         this.getCityList()
@@ -43,5 +47,12 @@ export default {
   &.active {
     transform: translateX(0%);
   }
+}
+.cy {
+  width: 100%;
+  height: 45px;
+  padding: 0 10px;
+  line-height: 45px;
+  border-bottom: 1px solid #eeeeee;
 }
 </style>

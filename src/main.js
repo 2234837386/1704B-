@@ -18,19 +18,6 @@ Vue.prototype.$getUrl = function (url) {
   let str = newurl.slice(7);
   return "https://images.weserv.nl?url=" + str;
 }
-Vue.prototype.$editUrl = function (url) {
-  let newurl = JSON.stringify(url);
-  let str = JSON.parse(newurl).replace('{0}', '3');
-  return str;
-}
-Vue.prototype.$secondUrl = function (ind, data, id) {
-  let len = data[id] && data[id].List.length;
-  let zero = data[id] && data[id].List[ind] && data[id].List[ind].Url;
-  let one = data[id] && data[id].List[ind % data[id].List.length] && data[id].List[ind % data[id].List.length].Url;
-  let url = ind >= len ? one : zero;
-  let urlstr = url && url.replace("{0}", "3");
-  return urlstr;
-}
 new Vue({
   router,
   store,

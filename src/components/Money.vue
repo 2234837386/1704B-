@@ -1,5 +1,7 @@
 <template>
-  <div id="msk" :class="{active:isZhan}"></div>
+  <div id="msk" :class="{active:isZhan}">
+    
+  </div>
 </template>
 
 <script>
@@ -13,7 +15,7 @@ export default {
     return {
       carlist: []
     };
-  }
+  },
 };
 </script>
 
@@ -32,4 +34,5 @@ export default {
     transform: translateY(0%);
   }
 }
+
 </style>
