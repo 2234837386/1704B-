@@ -7,7 +7,7 @@
         <i class="iconfont icon-angle-down"></i>
       </li>
       <!--  @click="carstyle"  {{cars?cars:'车款'}}-->
-      <li>
+      <li @click="styleBtn">
           车款
         <i class="iconfont icon-angle-down"></i>
       </li>
@@ -54,6 +54,14 @@ export default {
     colorBtn(){
       this.$router.push({
         path:'/color',
+        query:{
+          SerialID:this.$route.query.SerialID
+        }
+      })
+    },
+    styleBtn(){
+      this.$router.push({
+        path:'/carlist',
         query:{
           SerialID:this.$route.query.SerialID
         }

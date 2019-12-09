@@ -21,8 +21,13 @@ const routes = [
   },
   {
     path: '/color',
-    name: "xolor",
+    name: "color",
     component: () => import("../views/color")
+  },
+   {
+    path: '/carlist',
+    name: "carlist",
+    component: () => import("../views/carlist")
   },
   {
     path: '/',

@@ -2,16 +2,15 @@
   <div class="detail_page">
     <!-- {{Alllist}} -->
     <!-- 点击img跳转到pictures页面 -->
-    <img class="banimg" :src="Alllist.CoverPhoto" @click="tiaoimg(Alllist)"/>
+    <img class="banimg" :src="Alllist.CoverPhoto" @click="tiaoimg(Alllist)" />
     <div class="carmsg">
       <p>
-        <b v-if="Alllist.market_attribute">{{Alllist.market_attribute.dealer_price}}</b> 
+        <b v-if="Alllist.market_attribute">{{Alllist.market_attribute.dealer_price}}</b>
         <span v-if="Alllist.market_attribute">指导价：{{Alllist.market_attribute.official_refer_price}}</span>
       </p>
-
       <button v-if="Alllist">{{Alllist.BottomEntranceTitle}}</button>
     </div>
-     <div class="timemsg">
+    <div class="timemsg">
       <span
         :class="{active:ind===index}"
         v-for="(item,index) in getYear"
@@ -19,7 +18,7 @@
         @click="()=>ind=index"
       >{{item}}</span>
     </div>
-      <div class="inhale_type" v-for="(item,index) in listEach" :key="index">
+    <div class="inhale_type" v-for="(item,index) in listEach" :key="index">
       <div class="title">{{item.exhaust_str}}/{{item.max_power_str}}{{item.inhale_type}}</div>
       <div class="text">
         <span>{{item.market_attribute.year}}款 {{item.car_name}}</span>
@@ -36,6 +35,10 @@
         >{{Alllist.BottomEntranceTitle}}</i>
       </div>
     </div>
+    <div class="btn" v-if="Alllist.BottomEntranceTitle" @click="btnClick ">
+      <b>{{Alllist.BottomEntranceTitle}}</b>
+      <span>本地经销商为您报价</span>
+    </div>
   </div>
 </template>
 <script>
@@ -44,13 +47,14 @@ export default {
   props: {},
   components: {},
   data() {
-      return {
-          ind:0
-      }
+    return {
+      ind: 0,
+      firstData: []
+    };
   },
   computed: {
     ...mapState({
-       Alllist: state => state.detail.allList
+      Alllist: state => state.detail.allList
     }),
     getYear() {
       let arr = ["全部"];
@@ -62,7 +66,7 @@ export default {
         });
       return arr;
     },
-        listEach() {
+    listEach() {
       let list = JSON.stringify(this.Alllist.list);
       return (
         list &&
@@ -71,26 +75,59 @@ export default {
           return this.getYear[this.ind] === item.market_attribute.year;
         })
       );
+    },
+    getLinkId() {
+      let src = this.Alllist.BottomEntranceLink;
+      let ind = src.indexOf("carid");
+      let str = src.substr(ind, 12).split("=")[1];
+      return str;
     }
   },
   methods: {
     ...mapActions({
       carList: "detail/carList"
     }),
-    tiaoimg(Alllist){
+    tiaoimg(Alllist) {
       this.$router.push({
         path: "/picture",
-        query :{
+        query: {
           SerialID: this.$route.params.id
         }
       });
+    },
+    xiao(a, b) {
+      this.$router.push({
+        name: "cart",
+        params: {
+          carId: this.Alllist.list.car_id,
+          AliasName: this.Alllist.AliasName,
+          Picture: this.Alllist.Picture,
+          carName: this.Alllist.list.car_name
+        }
+      });
+      console.log(a, b);
+    },
+    btnClick() {
+      this.$router.push({
+        name: "cart",
+        params: {
+          carId: this.getLinkId,
+          cityId: 201
+        }
+      });
+      // console.log(this.AllList)
+      // this.firstData=this.AllList.list
     }
   },
   created() {
-    
     this.carList(this.$route.params.id);
   },
-  mounted() {}
+  mounted() {
+    //  this.Alllist.list.map((ite,k)=>{
+    //    return this.firstData=ite
+    //  })
+    console.log(this.Alllist);
+  }
 };
 </script>
 <style lang="scss" scoped>

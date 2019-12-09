@@ -1,10 +1,12 @@
 import {carList} from '../../servicer/index'
 const state={
-    allList:[]
+    allList:[],
+    carList:[]
 }
 const mutations={
     getList(state,payload){
         state.allList=payload
+       
     }
 }
 const actions={

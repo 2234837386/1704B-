@@ -11,6 +11,7 @@ export let carColor=(SerialID)=>{
  return request(`v2-car-getModelImageYearColor.html?SerialID=${SerialID}`)
     // return request('v2-car-getModelImageYearColor.html?SerialID=2593')
 }
-// export let DistributorList=()=>{
-//     return request('/v1-city-alllist.html')
+//车系列表
+// export let carstyleList=(SerialID)=>{
+//     return request(``)
 // }
