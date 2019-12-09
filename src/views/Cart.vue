@@ -28,8 +28,9 @@
           <span>手机</span>
           <input type="text" placeholder="输入你的真实手机号码" />
         </li>
-        <li @click="tan">
+        <li @click="tan" class="spnl">
           <span>城市</span>
+          <span class="span">{{CityName}}</span>
           <i class="iconfont icon-angle-right dd"></i>
         </li>
         <button class="btn">询问最低价</button>
@@ -99,6 +100,13 @@ export default {
   margin-left: 10px;
   margin-top: 3px;
   line-height: 30px;
+}
+.spnl{
+  position: relative;
+}
+.span{
+  position: absolute;
+  right: 40px;
 }
 .hh {   
         text-align: center;

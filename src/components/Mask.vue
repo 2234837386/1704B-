@@ -1,14 +1,14 @@
 <template>
-  <div id="mask" :class="{active:isMask}">
-    <div class="dome" v-for="(item,index) in nav" :key="index">
-      <h3 @click="edit(false)">{{item.GroupName}}</h3>
+  <div id="mask" :class="{active:isMask}" @touchstart="startfn" @touchend="endfn">
+    <div class="dome" v-for="(item,index) in maskList" :key="index">
+      <h3 @click="editInd(false)">{{item.GroupName}}</h3>
       <div class="main">
         <dl
           class="item"
           v-for="(a,i) in item.GroupList"
           :key="i"
           :data-ind="a.SerialID"
-          @click="()=>{$router.push(`/details/${a.SerialID}`)}"
+          @click="()=>{$router.push(`/detail/${a.SerialID}`)}"
         >
           <dt>
             <img v-lazy="$getUrl(a.Picture)" alt />
@@ -25,20 +25,34 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 export default {
-  props: {
-    isMask: {
-      type: Boolean | String
-    }
-  },
+  props: {},
   components: {},
   data() {
-    return {};
+    return {
+      startX: 0,
+      startY: 0,
+      endX: 0,
+      endY: 0
+    };
   },
   computed: {
-    ...mapState(["nav"])
+    ...mapState({
+      isMask: state => state.home.isMask,
+      maskList: state => state.home.maskList
+    })
   },
   methods: {
-    ...mapMutations(["edit"])
+    ...mapMutations({
+      editInd: "home/editInd"
+    }),
+    startfn(e) {
+      this.startX = e.changedTouches[0].pageX;
+      this.startY = e.changedTouches[0].pageY;
+    },
+    endfn(e) {
+      this.endX = e.changedTouches[0].pageX;
+      this.endY = e.changedTouches[0].pageY;
+    }
   },
   created() {},
   mounted() {}
@@ -84,16 +98,20 @@ export default {
     width: 100%;
     flex: 1;
     display: flex;
-    flex-direction: column;
     flex-shrink: 0;
+    flex: 1;
+    flex-direction: column;
     .item {
       width: 100%;
       height: 5rem;
+      display: flex;
       border-bottom: 0.08rem solid #ddd;
       padding: 0.1rem;
       box-sizing: border-box;
-      display: flex;
       flex-shrink: 0;
+      &:last-child {
+        border-bottom: 0;
+      }
       dt {
         width: 30%;
         height: 100%;
@@ -103,6 +121,9 @@ export default {
         box-sizing: border-box;
         justify-content: center;
         align-items: center;
+        padding-left: 1rem;
+        box-sizing: border-box;
+        flex-shrink: 0;
         img {
           width: 5.5rem;
           height: 80%;

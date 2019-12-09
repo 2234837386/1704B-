@@ -1,13 +1,15 @@
 <template>
-  <div class="xiang_page">
-    <img class="banimg" :src="list.CoverPhoto" alt @click="tiaoimg(list)" />
+  <div class="detail_page">
+    <!-- {{Alllist}} -->
+    <!-- 点击img跳转到pictures页面 -->
+    <img class="banimg" :src="Alllist.CoverPhoto" @click="tiaoimg(Alllist)" />
     <div class="carmsg">
       <p>
-        <b v-if="list.market_attribute">{{list.market_attribute.dealer_price}}</b>
-        <span v-if="list.market_attribute">指导价：{{list.market_attribute.official_refer_price}}</span>
+        <b v-if="Alllist.market_attribute">{{Alllist.market_attribute.dealer_price}}</b>
+        <span v-if="Alllist.market_attribute">指导价：{{Alllist.market_attribute.official_refer_price}}</span>
       </p>
 
-      <button v-if="list" @click="xiao">{{list.BottomEntranceTitle}}</button>
+      <button v-if="Alllist">{{Alllist.BottomEntranceTitle}}</button>
     </div>
     <div class="timemsg">
       <span
@@ -29,58 +31,39 @@
         </li>
         <i
           class="ibtn"
-          v-if="list.BottomEntranceTitle"
+          v-if="Alllist.BottomEntranceTitle"
           @click="xiao(item.car_id,item.car_name)"
-        >{{list.BottomEntranceTitle}}</i>
+        >{{Alllist.BottomEntranceTitle}}</i>
       </div>
-    </div>
-    <div class="btn" v-if="list.BottomEntranceTitle">
-   
-      <b>{{list.BottomEntranceTitle}}</b>
-      <span>本地经销商为您报价</span>
     </div>
   </div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   props: {},
   components: {},
   data() {
     return {
-      list: [],
-      carlist: [],
-
-      ind: 0,
-      gets: [],
-      carId: ""
+      ind: 0
     };
   },
-  created() {
-    this.$http
-      .get(
-        `https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=${this.$route.params.id}`
-      )
-      .then(res => {
-        this.list = res.data.data;
-        this.carlist = this.list.list;
-      });
-    this.getCarid();
-  },
-  mounted() {},
   computed: {
+    ...mapState({
+      Alllist: state => state.detail.allList
+    }),
     getYear() {
       let arr = ["全部"];
-      let data = JSON.stringify(this.list.list);
+      let data = JSON.stringify(this.Alllist.list);
       data &&
         JSON.parse(data).map(item => {
           if (arr.find(a => a === item.market_attribute.year)) return;
           arr.push(item.market_attribute.year);
         });
       return arr;
-
     },
     listEach() {
-      let list = JSON.stringify(this.list.list);
+      let list = JSON.stringify(this.Alllist.list);
       return (
         list &&
         JSON.parse(list).filter(item => {
@@ -88,49 +71,37 @@ export default {
           return this.getYear[this.ind] === item.market_attribute.year;
         })
       );
-
     }
   },
   methods: {
-    tiaoimg(item) {
+    ...mapActions({
+      carList: "detail/carList"
+    }),
+    tiaoimg(Alllist) {
       this.$router.push({
         path: "/picture",
         query: {
-          SerialID: item.SerialID
+          SerialID: this.$route.params.id
         }
       });
     },
-    xiao(carId, carName) {
-      console.log(carId);
-      this.$router.push({
-        path: "/cart",
-        query: {
-          carId: carId,
-          AliasName: this.list.AliasName,
-          Picture: this.list.Picture,
-          carName: carName
-        }
-      });
-    },
-    tab(ind) {
-      this.ind = ind;
-    },
-    getCarid() {
-      let ids = this.carlist.map((item, index) => {
-        return item;
-        console.log(item);
-      });
+    xiao(){
+       this.$router.push('/cart')
+      console.log(2131,'===============');
     }
-  }
+  },
+  created() {
+    this.carList(this.$route.params.id);
+  },
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
-.xiang_page {
+.detail_page {
   width: 100%;
   height: 100%;
   display: flex;
-  overflow: hidden;
-  overflow-y: auto;
+
   flex-direction: column;
   background: #eee;
   box-sizing: border-box;
@@ -152,20 +123,23 @@ export default {
       flex-direction: column;
 
       b {
-        font-size: 20px;
-        color: #f00;
+        font-size: 1.2rem;
+        color: #ff0000;
+
+        font-weight: normal;
         margin-bottom: 3px;
       }
       span {
         color: #ccc;
+        font-size: 0.7rem;
       }
     }
     button {
-      width: 145px;
-      height: 40px;
-      background: #09f;
+      width: 180px;
+      height: 35px;
+      background: #00afff;
       border: 0;
-      border-radius: 3px;
+      border-radius: 5px;
       outline: none;
       color: #fff;
       font-size: 16px;
@@ -180,12 +154,9 @@ export default {
     flex-shrink: 0;
     span {
       margin: 0 10px;
-      &active {
+      &.active {
         color: #09f;
       }
-    }
-    span:first-child {
-      color: #09f;
     }
     .inhale_type {
       width: 100%;
@@ -242,7 +213,8 @@ export default {
     }
     b {
       font-size: 20px;
-      color: #f00;
+      color: #ff0000;
+      font-weight: normal;
       margin: 0 5px;
     }
   }
@@ -253,7 +225,7 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background: #09f;
+  background: #3aacff;
   color: #fff;
   position: fixed;
   bottom: 0;

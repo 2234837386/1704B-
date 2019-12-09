@@ -4,9 +4,7 @@
             <div class="header">自动定位</div>
             <div class="bei">北京</div>
             <div class="heade">省份</div>
-            <div class="con" @click="showI(id)" v-for="(item,index) in cityData" :key="index">{{item.CityName}}
-              <span class="iconfont icon-angle-right hh"></span>
-            </div>
+            <div class="con" v-for="(item,index) in cityData" :key="index" :data-id="item.CityID" @click="tan(item.CityID)">{{item.CityName}}</div>
             <Left :isShow="isShow" />
         </div>
         
@@ -14,38 +12,42 @@
 </template>
 
 <script>
-import Left from './Left'
 import { mapState, mapActions } from "vuex";
+import Left from './Left'
+
 export default {
-  components: {
+  components:{
      Left
+  },
+  data() {
+    return {
+      isShow: false
+    };
   },
   props: {
     ismask: {
       type: Boolean
     }
   },
-   data() {
-    return {
-      isShow: false
-    }
-  },
   computed: {
       ...mapState({
-          cityData:state=>state.home.cartList
+          cityData:state=>state.cart.cartList
       })
   },
   methods:{
        ...mapActions({
-           getMasterList:'home/getMasterList'
+           getMasterList:'cart/getMasterList',
+           getCityList:'city/getCityList'
        }),
-       showI(){
-           this.isShow = true;
+       tan(CityID){
+           this.isShow=true;
+           this.getCityList(CityID)
        }
   },
   mounted () {
       this.getMasterList()
   }
+
 };
 </script>
 
@@ -60,7 +62,7 @@ export default {
   overflow: hidden;
   overflow-y: auto;
   transform: translateY(100%);
-  transition: all 2s ease;
+  transition: all 1s ease;
   .auto {
     width: 100%;
     height: 100%;
@@ -99,11 +101,6 @@ export default {
   display: flex;
   position: relative;
   flex-shrink: 0;
-  .hh {   
-        font-size: 25px;
-        color: #cccccc
-  
-}
 }
 .con .icon-angle-right {
   position: absolute;
