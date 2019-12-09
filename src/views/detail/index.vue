@@ -33,6 +33,10 @@
         >{{Alllist.BottomEntranceTitle}}</i>
       </div>
     </div>
+    <div class="btn" v-if="Alllist.BottomEntranceTitle" @click="()=>{$router.push('/cart')}">
+      <b>{{Alllist.BottomEntranceTitle}}</b>
+      <span>本地经销商为您报价</span>
+    </div>
   </div>
 </template>
 <script>
