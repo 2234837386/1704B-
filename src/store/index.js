@@ -6,6 +6,7 @@ import home from "./modules/home"
 import detail from './modules/detail'
 import cart from './modules/cart'
 import city from './modules/city'
+import form from './modules/form'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ export default new Vuex.Store({
     home,
     detail,
     city,
-    cart
+    cart,
+    form
   },
   plugins: [
     createLogger()

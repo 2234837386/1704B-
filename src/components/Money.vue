@@ -1,13 +1,13 @@
 <template>
-  <div id="msk" :class="{active:isZhan}">
-    
+  <div id="msk" :class="{active:isUp}">
+    eaaaaaaaaaaaaaaaaaaaaaaa
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    isZhan: {
+    isUp: {
       type: Boolean
     }
   },
@@ -23,6 +23,7 @@ export default {
 #msk {
   width: 100%;
   height: 100%;
+  inline-size: 9999;
   background: #ffffff;
   position: absolute;
   left: 0;
