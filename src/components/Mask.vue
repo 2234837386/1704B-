@@ -1,5 +1,5 @@
 <template>
-  <div id="mask" :class="{active:isMask}" @touchstart="startfn" @touchend="endfn">
+  <div id="mask" :class="{active:isMask}" @touchstart="startfn($event)" @touchend="endfn($event)">
     <div class="dome" v-for="(item,index) in maskList" :key="index">
       <h3 @click="editInd(false)">{{item.GroupName}}</h3>
       <div class="main">
