@@ -20,6 +20,7 @@ const routes = [
     component: () => import("@/views/picture")
   },
   {
+
     path: '/color',
     name: "color",
     component: () => import("../views/color")
@@ -30,9 +31,14 @@ const routes = [
     component: () => import("../views/carlist")
   },
   {
-    path: '/',
-    redirect: "/home"
+    path: '/cart',
+    name: "cart",
+    component: () => import("../views/Cart.vue")
+  },
+  {
+    path: "*",
 
+    redirect: "/home"
   }
 ]
 
