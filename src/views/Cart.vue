@@ -1,62 +1,43 @@
 <template>
   <div class="warp">
-    <div class="hot">
-      <div class="header">
-        <p>可向多个商家咨询最低价，商家及时回复</p>
+    <div class="header">
+      <p>可向多个商家咨询最低价，商家及时回复</p>
+    </div>
+    <div class="had">
+      <div class="img">
+        <!-- <img :src="Picture" alt /> -->
       </div>
-      <div class="had" @click="carShowFn">
-        <div class="img">
-          <img src="" alt />
-        </div>
-        <div class="content">
-          <h4></h4>
-          <p></p>
-        </div>
-        <div class="spn">
-          <span class="iconfont icon-angle-right hh"></span>
-        </div>
+      <div class="content">
+        <!-- <h4>{{AliasName}}</h4>
+        <p>{{carName}}</p>-->
       </div>
-      <div class="from">
-        <div class="biao">
-          <p>个人信息</p>
-        </div>
-        <div class="message">
-          <li>
-            <span>姓名</span>
-            <input type="text" placeholder="输入你的真实中文姓名" />
-          </li>
-          <li>
-            <span>手机</span>
-            <input type="text" placeholder="输入你的真实手机号码" />
-          </li>
-          <li @click="tan" class="spnl">
-            <span>城市</span>
-            <span class="span">{{name}}</span>
-          </li>
-          <button class="btn">询问最低价</button>
-        </div>
+      <div class="spn">
+        <span class="iconfont icon-angle-right hh"></span>
       </div>
-      <div class="dealer-info">
-        <p class="tip">选择报价经销商</p>
-        <ul>
-          <li
-            data-hover="hover"
-            data-id="8766"
-            :class="{active:index<3}"
-            v-for="(item,index) in formList.list"
-            :key="index"
-          >
-            <p>
-              <span>{{item.dealerShortName}}</span>
-              <span>万</span>
-            </p>
-            <p>
-              <span>{{item.address}}</span>
-              <span>售{{item.saleRange}}</span>
-            </p>
-          </li>
-        </ul>
+    </div>
+    <div class="from">
+      <div class="biao">
+        <p>个人信息</p>
       </div>
+      <div class="message">
+        <li>
+          <span>姓名</span>
+          <input type="text" placeholder="输入你的真实中文姓名" />
+        </li>
+        <li>
+          <span>手机</span>
+          <input type="text" placeholder="输入你的真实手机号码" />
+        </li>
+        <li @click="tan">
+          <span>城市</span>
+          <i class="iconfont icon-angle-right dd"></i>
+        </li>
+        <button class="btn">询问最低价</button>
+      </div>
+    </div>
+
+    <div class="dian">
+      <p>经销报价商家</p>
     </div>
     <Up :ismask="ismask" />
   </div>
@@ -64,45 +45,19 @@
 
 <script>
 import Up from "../components/Up";
-import { mapState, mapActions } from "vuex";
-
 export default {
   components: {
     Up
   },
   data() {
     return {
-      ismask: false,
-
-      name: this.$route.query.CityName,
-      AliasName: "",
-      Picture: "",
-      carId: "",
-      carName: ""
+      ismask: false
     };
-  },
-  computed: {
-    ...mapState({ 
-      formList: state => state.form.formList 
-      })
   },
   methods: {
     tan() {
       this.ismask = !this.ismask;
-    },
-    carShowFn() {
-      this.carShow = !this.carShow;
-    },
-    ...mapActions({
-      getformList: "form/getformList"
-    })
-  },
-  created() {
-    this.getformList();
-    this.Picture = this.$route.params.Picture;
-    this.AliasName = this.$route.params.AliasName;
-    this.carId = this.$route.params.carId;
-    this.carName = this.$route.params.carName;
+    }
   }
 };
 </script>
@@ -111,8 +66,8 @@ export default {
 .warp {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 .header {
   width: 100%;
@@ -120,16 +75,6 @@ export default {
   background: #79cd92;
   line-height: 35px;
   text-align: center;
-}
-.hot {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  overflow-y: auto;
-  position: relative;
 }
 .had {
   background: #fff;
@@ -139,7 +84,7 @@ export default {
   display: flex;
 }
 .had .img {
-  margin-top: 13px;
+  margin-top: 3px;
   width: 120px;
   height: 80px;
   border: 1px dotted #cccccc;
@@ -153,19 +98,16 @@ export default {
   margin-top: 3px;
   line-height: 30px;
 }
-.spnl {
-  position: relative;
-}
-.span {
-  position: absolute;
-  right: 25px;
-}
 .hh {
   text-align: center;
   margin-top: 35px;
   font-size: 30px;
   color: #d3c7c7;
   font-weight: normal;
+}
+.dd {
+  font-size: 23px;
+  color: #d3c7c7;
 }
 .from {
   width: 100%;
@@ -239,95 +181,14 @@ export default {
 
 .dian {
   width: 100%;
+  background: #eeeeee;
   padding: 0 10px;
-  display: flex;
-  flex-direction: column;
 }
 .dian p {
   font-size: 12px;
   color: #666;
-  background: #eeeeee;
   width: 100%;
   height: 20px;
   line-height: 20px;
-}
-.dian main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.tip {
-  padding: 0 5px;
-  height: 28px;
-  line-height: 28px;
-  font-size: 12px;
-  color: #666;
-  background: #eee;
-}
-.dealer-info ul {
-  background: #fff;
-  padding: 0 0.18rem;
-}
-.dealer-info li {
-  position: relative;
-  padding: 10px 0 10px 25px;
-  border-bottom: 1px solid #eee;
-  box-sizing: border-box;
-  height: 91px;
-}
-.dealer-info li p:first-child {
-  font-size: 18px;
-}
-.dealer-info li p:first-child {
-  font-size: 18px;
-}
-.dealer-info li p:first-child span:last-child {
-  font-size: 16px;
-  float: right;
-  color: red;
-}
-.dealer-info li p:nth-child(2) {
-  margin-top: 5px;
-  font-size: 14px;
-  color: #a2a2a2;
-  span:first-child {
-    display: inline-block;
-    max-width: 254px;
-  }
-  span:nth-child(2) {
-    float: right;
-  }
-}
-.dealer-info li:before {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  box-sizing: border-box;
-  position: absolute;
-  left: 5px;
-  top: 50%;
-  -webkit-transform: translate3d(0, -50%, 0);
-  transform: translate3d(0, -50%, 0);
-}
-.dealer-info li.active:before {
-  background: #3aacff;
-  border: none;
-}
-.dealer-info li.active:after {
-  content: "";
-  display: inline-block;
-  padding-top: 10px;
-  padding-right: 5px;
-  border: 2px solid #fff;
-  -webkit-transform: rotate(40deg) translate3d(0, -50%, 0);
-  transform: rotate(40deg) translate3d(0, -50%, 0);
-  position: absolute;
-  left: 6px;
-  border-left: none;
-  border-top: none;
-  top: 47%;
 }
 </style>
