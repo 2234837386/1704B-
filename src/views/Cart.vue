@@ -127,6 +127,8 @@ export default {
     }
   },
   created() {
+    this.editBlock({ type: false });
+    this.editYear({ type: false });
     let { CarID, CityID } = this.$route.params;
     this.getCartList(this.$route.params);
   },
