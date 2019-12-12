@@ -1,22 +1,21 @@
-import { carList } from '@/servicer/index'
+import { getDetailList } from "@/servicer/index";
 const state = {
-    allList: []
+    detailList: []
 }
 const mutations = {
-    getList(state, payload) {
-        state.allList = payload
+    setDetailList(state, actions) {
+        state.detailList = actions
     }
 }
 const actions = {
-    async carList({ commit }, actions) {
-        let res = await carList(actions)
-        commit('getList', res)
-        // console.log(res)
+    async getDetailList({ commit }, actions) {
+        let res = await getDetailList(actions ? actions : 2593);
+        commit("setDetailList", res)
     }
 }
 export default {
+    namespaced: true,
     state,
     mutations,
-    actions,
-    namespaced: true
+    actions
 }

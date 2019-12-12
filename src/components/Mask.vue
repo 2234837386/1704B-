@@ -8,10 +8,10 @@
           v-for="(a,i) in item.GroupList"
           :key="i"
           :data-ind="a.SerialID"
-          @click="()=>{$router.push(`/detail/${a.SerialID}`)}"
+          @click="$router.push({name:'detail',params:{SerialID:a.SerialID}})"
         >
           <dt>
-            <img v-lazy="$getUrl(a.Picture)" alt />
+            <img v-lazy="a.Picture" alt />
           </dt>
           <dd>
             <span>{{a.AliasName}}</span>
