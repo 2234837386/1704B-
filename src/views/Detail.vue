@@ -2,7 +2,7 @@
   <div class="Detail">
     <section>
       <div class="img">
-        <img v-lazy="detailList.CoverPhoto" data-hover="hover" />
+        <img v-lazy="$url(detailList.CoverPhoto)" data-hover="hover" />
         <span data-hover="hover">{{detailList.pic_group_count}}张照片</span>
       </div>
       <div class="info">
@@ -12,7 +12,7 @@
           </p>
           <p>指导价 {{detailList.market_attribute&&detailList.market_attribute.official_refer_price}}</p>
         </div>
-        <button data-hover="hover" @click="jumpCart()">询问底价</button>
+        <button data-hover="hover" @click="jumpCart()">{{detailList.BottomEntranceTitle}}</button>
       </div>
       <div class="detailList">
         <div class="detailTab">
@@ -34,7 +34,11 @@
                   <span>指导价 {{v.market_attribute.official_refer_price}}</span>
                   <span>{{v.market_attribute.dealer_price_min?`${v.market_attribute.dealer_price_min}起`:"暂无"}}</span>
                 </p>
-                <button data-id="138592" data-hover="hover" @click="jumpCart(v.car_id)">询问底价</button>
+                <button
+                  data-id="138592"
+                  data-hover="hover"
+                  @click="jumpCart(v.car_id)"
+                >{{detailList.BottomEntranceTitle}}</button>
               </li>
             </ul>
           </div>
@@ -115,6 +119,7 @@ export default {
     }
   },
   created() {
+    console.log(this.$route.params.SerialID)
     this.getIp();
     this.getDetailList(this.$route.params.SerialID);
   },

@@ -12,7 +12,7 @@ const router = new Router({
       component: () => import("@/views/Home")
     },
     {
-      path: '/detail',
+      path: '/detail/:SerialID',
       name: 'detail',
       component: () => import("@/views/Detail")
     },

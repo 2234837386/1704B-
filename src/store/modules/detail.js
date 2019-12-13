@@ -9,7 +9,7 @@ const mutations = {
 }
 const actions = {
     async getDetailList({ commit }, actions) {
-        let res = await getDetailList(actions ? actions : 2593);
+        let res = await getDetailList(actions);
         commit("setDetailList", res)
     }
 }

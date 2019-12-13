@@ -14,7 +14,6 @@ const mutations = {
             if (state.homeList.findIndex(item => item.lets == lets) == -1) {
                 state.homeList.push({ lets, children: newArr });
             }
-            // console.log(state.homeList)
         })
     },
     setMaskList(state, actions) {

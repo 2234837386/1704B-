@@ -24,6 +24,11 @@ Vue.prototype.$Sort = function (data) {
     }
   })
 }
+Vue.prototype.$url = function (url) {
+  if (url && url.indexOf("{0}") === -1) return url;
+  let str = url && url.replace("{0}", "3");
+  return str;
+}
 Vue.prototype.$push = function (data) {
   data = data && data.map(item => {
     item.keys = `${item.exhaust_str}${item.max_power_str} ${item.inhale_type}`;
@@ -31,9 +36,7 @@ Vue.prototype.$push = function (data) {
   })
   let newList = [];
   data && data.forEach(item => {
-    //查找keys
     let index = newList.findIndex(value => value.key === item.keys);
-    //如果不等于-1找到了往list里面push没找到就直接push
     if (index !== -1) {
       newList[index].list.push(item);
     } else {
