@@ -23,7 +23,8 @@
           <ul>
             <li>
               <span>姓名</span>
-              <input type="text" placeholder="输入你的真实中文姓名" maxlength="4" />
+              <input type="text" placeholder="输入你的真实中文姓名" maxlength="4"  />
+                            
             </li>
             <li>
               <span>手机</span>
@@ -37,7 +38,7 @@
             </li>
           </ul>
           <div class="request">
-            <button data-hover="hover">询最低价</button>
+            <button data-hover="hover" >询最低价</button>
           </div>
         </div>
         <!-- 经销商列表 -->
@@ -106,7 +107,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCartList: "cart/getCartList"
+      getCartList: "cart/getCartList",
+      getTask:'task/getTask'
     }),
     ...mapMutations({
       editBlock: "cart/editBlock"
@@ -136,6 +138,7 @@ export default {
   },
   created() {
     this.getCartList();
+    
   },
   mounted() {}
 };
