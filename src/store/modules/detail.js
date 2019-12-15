@@ -79,9 +79,16 @@ const mutations = {
     }
 }
 const actions = {
+<<<<<<< HEAD
     async getDetailList({ commit }, actions) {
         let res = await getDetailList(actions);
         commit("setDetailList", res)
+=======
+    async carList({ commit }, actions) {
+        let res = await carList(actions)
+        commit('getList', res)
+        console.log(res)
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
     }
 }
 export default {

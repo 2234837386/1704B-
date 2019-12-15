@@ -6,7 +6,11 @@
         <img src="http://h5.chelun.com/2017/official/img/icon-help.png" />
       </header>
       <section @scroll="scrollfn">
+<<<<<<< HEAD
         <div class="userShow" @click="editYear({type:true})">
+=======
+        <div class="userShow" @click="show">
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
           <img :src="details&&details.serial.Picture" />
           <div class="dataShow">
             <p>{{details&&details.serial.AliasName}}</p>
@@ -17,12 +21,21 @@
             </p>
           </div>
         </div>
+<<<<<<< HEAD
+=======
+        <!-- 表单 -->
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
         <div class="form">
           <p class="title">个人信息</p>
           <ul>
             <li>
               <span>姓名</span>
+<<<<<<< HEAD
               <input type="text" placeholder="输入你的真实中文姓名" maxlength="4" />
+=======
+              <input type="text" placeholder="输入你的真实中文姓名" maxlength="4"  />
+                            
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
             </li>
             <li>
               <span>手机</span>
@@ -30,6 +43,7 @@
             </li>
             <li>
               <span>城市</span>
+<<<<<<< HEAD
               <span @click="editBlock({type:true})">{{positionsCity.CityName}}</span>
             </li>
           </ul>
@@ -37,6 +51,18 @@
             <button data-hover="hover">询最低价</button>
           </div>
         </div>
+=======
+              <span
+                @click="editBlock({type:true})"
+              >{{positionsCity.CityName?positionsCity.CityName:"北京"}}</span>
+            </li>
+          </ul>
+          <div class="request">
+            <button data-hover="hover" >询最低价</button>
+          </div>
+        </div>
+        <!-- 经销商列表 -->
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
         <div class="userList">
           <p class="title">选择报价经销商</p>
           <ul>
@@ -60,33 +86,56 @@
           </ul>
         </div>
       </section>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
       <footer :style="{display:isShow?'block':'none'}">
         <button data-hover="hover">询最低价</button>
       </footer>
     </div>
     <Up :isBlock="isBlock" />
+<<<<<<< HEAD
     <CarYear :isYear="isYear" />
+=======
+    <Money :isUp='isUp'/>
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
   </div>
 </template>
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
 import Up from "@/components/Up";
+<<<<<<< HEAD
 import CarYear from "@/components/CarYear";
+=======
+import Money from '@/components/Money'
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
 export default {
   props: {},
   components: {
     Up,
+<<<<<<< HEAD
     CarYear
+=======
+    Money
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
   },
   data() {
     return {
       isShow: false,
+<<<<<<< HEAD
+=======
+      isUp:false,
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
       isArr: [0, 1, 2]
     };
   },
   computed: {
     ...mapState({
+<<<<<<< HEAD
       isYear: state => state.cart.isYear,
+=======
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
       isBlock: state => state.cart.isBlock,
       cartList: state => state.cart.cartList,
       count: state => state.cart.count,
@@ -101,12 +150,25 @@ export default {
   },
   methods: {
     ...mapActions({
+<<<<<<< HEAD
       getCartList: "cart/getCartList"
     }),
     ...mapMutations({
       editBlock: "cart/editBlock",
       editYear: "cart/editYear"
     }),
+=======
+      getCartList: "cart/getCartList",
+      getTask:'task/getTask'
+    }),
+    ...mapMutations({
+      editBlock: "cart/editBlock"
+    }),
+    show(){
+        this.isUp=true
+    },
+    // 显示下面的按钮询问底价
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
     scrollfn(e) {
       let top = [...e.target.children]
         .slice(0, -1)
@@ -127,10 +189,15 @@ export default {
     }
   },
   created() {
+<<<<<<< HEAD
     this.editBlock({ type: false });
     this.editYear({ type: false });
     let { CarID, CityID } = this.$route.params;
     this.getCartList(this.$route.params);
+=======
+    this.getCartList();
+    
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
   },
   mounted() {}
 };
@@ -140,10 +207,15 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
+<<<<<<< HEAD
+=======
+  overflow: hidden;
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
 }
 .oshow {
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
   display: flex;
   flex-direction: column;
 }
@@ -169,9 +241,42 @@ header {
 section {
   width: 100%;
   flex: 1;
+=======
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+<<<<<<< HEAD
+  overflow-y: auto;
+=======
+}
+header {
+  width: 100%;
+  height: 34px;
+  line-height: 34px;
+  width: 100%;
+  background: #79cd92;
+  text-align: center;
+  // z-index: 99;
+  p {
+    color: #fff;
+    font-size: 18pz;
+    display: inline-block;
+  }
+  img {
+    width: 0.9rem;
+    margin-left: 0.3rem;
+    vertical-align: -10%;
+  }
+}
+section {
+  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  flex-shrink: 0;
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
   .userShow {
     background: #fff;
     padding: 0.96rem 0.54rem 0.72rem;
@@ -179,6 +284,10 @@ section {
     height: 6rem;
     box-sizing: border-box;
     display: flex;
+<<<<<<< HEAD
+=======
+    flex-shrink: 0;
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
     align-items: center;
     img {
       width: 6.9rem;
@@ -228,6 +337,10 @@ section {
     width: 100%;
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
+=======
+    flex-shrink: 0;
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
     ul {
       background: #fff;
       padding: 0 0.6rem;
@@ -248,7 +361,10 @@ section {
           outline: none;
         }
         &:last-child {
+<<<<<<< HEAD
           border-bottom: none;
+=======
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
           span {
             &:last-child {
               display: flex;
@@ -279,7 +395,11 @@ section {
         width: 80%;
         background: #3aacff;
         height: 2.1rem;
+<<<<<<< HEAD
         border-radius: 0.1rem;
+=======
+        border-radius: 0.3rem;
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
         border: none;
         outline: none;
       }

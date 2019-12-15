@@ -21,12 +21,19 @@ export default {
   },
   computed: {
     ...mapState({
+<<<<<<< HEAD
       cityListTwo: state => state.cart.cityListTwo,
       positionsCity: state => state.cart.positionsCity
     })
   },
   methods: {
     ...mapActions({ getCartList: "cart/getCartList" }),
+=======
+      cityListTwo: state => state.cart.cityListTwo
+    })
+  },
+  methods: {
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
     ...mapMutations({
       editShow: "cart/editShow",
       editBlock: "cart/editBlock",
@@ -36,10 +43,13 @@ export default {
       this.editCity(item);
       this.editShow({ type: false });
       this.editBlock({ type: false });
+<<<<<<< HEAD
       this.getCartList({
         CarID: this.$route.params.CarID,
         CityID: this.positionsCity.CityID
       });
+=======
+>>>>>>> 15113ae0e74ab1761ba5f2c4d0af5e1d12e531d1
     }
   },
   created() {},
