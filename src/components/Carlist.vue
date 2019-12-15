@@ -27,8 +27,6 @@ export default {
         path: "/picture",
         query: {
           carId: this.item.car_id,
-          carName: this.item.car_name,
-          carYear: this.item.market_attribute.year,
           SerialID: this.$route.query.SerialID
         }
       });

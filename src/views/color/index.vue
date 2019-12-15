@@ -15,7 +15,7 @@
         >{{index}}</span>
       </div>
       <div class="colors">
-        <li class="box" v-for="(ite,int) in  mapList" :key="int">
+        <li class="box" v-for="(ite,int) in  mapList" :key="int" @click="tpic(ite)">
           <i class="cbox" :style="{'background':ite.Value}"></i>
           <span>{{ite.Name}}</span>
         </li>
@@ -54,6 +54,17 @@ export default {
     hanc(item, k, year) {
       this.cIndex = k;
       this.colorData = item;
+    },
+    tpic(ite){
+      this.$router.push({
+        
+          path:'/picture',
+          query:{
+            SerialID: this.$route.query.SerialID,
+            colorId:ite.ColorId
+
+        }
+      })
     }
   },
   created() {},
