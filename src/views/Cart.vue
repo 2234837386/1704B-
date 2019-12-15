@@ -30,10 +30,7 @@
             </li>
             <li>
               <span>城市</span>
-              <span @click="editBlock({type:true})">{{positionsCity.CityName?positionsCity.CityName:"北京"}}</span>
-               <!-- <span
-                @click="editBlock({type:true})"
-              >{{positionsCity.CityName?positionsCity.CityName:"北京"}}</span> -->
+              <span @click="editBlock({type:true})">{{positionsCity.CityName}}</span>
             </li>
           </ul>
           <div class="request">
@@ -149,7 +146,6 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
 }
 header {
   width: 100%;
@@ -158,6 +154,7 @@ header {
   width: 100%;
   background: #79cd92;
   text-align: center;
+  z-index: 99;
   p {
     color: #fff;
     font-size: 0.9rem;
@@ -183,7 +180,6 @@ section {
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    flex-shrink: 0;
     img {
       width: 6.9rem;
       height: 4.23rem;
@@ -232,7 +228,6 @@ section {
     width: 100%;
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
     ul {
       background: #fff;
       padding: 0 0.6rem;
@@ -284,7 +279,7 @@ section {
         width: 80%;
         background: #3aacff;
         height: 2.1rem;
-        border-radius: 5px;
+        border-radius: 0.1rem;
         border: none;
         outline: none;
       }

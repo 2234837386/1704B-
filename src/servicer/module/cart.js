@@ -1,11 +1,4 @@
-// 引入拦截器
-// import request from "@/util/request"
-// // 城市的列表
-
-// export let getMasterList=()=>{
-//     return request("/v1-city-alllist.html")
-// }
-import request from "@/util/request";
+import request from "@/utils/request";
 export let getCartList = (carId, cityId) => {
     return request("/v2-dealer-alllist.html", { params: { carId, cityId } })
 }
