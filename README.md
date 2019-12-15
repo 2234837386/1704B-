@@ -1,4 +1,4 @@
-# dome
+# pact
 
 ## Project setup
 ```

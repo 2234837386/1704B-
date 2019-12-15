@@ -10,12 +10,12 @@ const mutations={
        
     }
 }
-const actions={
-   async carList({commit},actions){
-       let res=await carList(actions)
-       commit('getList',res)
-    //    console.log(res)
-   }
+const actions = {
+    async carList({ commit }, actions) {
+        let res = await carList(actions)
+        commit('getList', res)
+        console.log(res)
+    }
 }
 export default{
     state,

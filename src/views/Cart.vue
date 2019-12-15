@@ -1,333 +1,393 @@
 <template>
-  <div class="warp">
-    <div class="hot">
-      <div class="header">
+  <div class="cart">
+    <div class="oshow">
+      <header>
         <p>可向多个商家咨询最低价，商家及时回复</p>
-      </div>
-      <div class="had" @click="carShowFn">
-        <div class="img">
-          <img src="" alt />
-        </div>
-        <div class="content">
-          <h4></h4>
-          <p></p>
-        </div>
-        <div class="spn">
-          <span class="iconfont icon-angle-right hh"></span>
-        </div>
-      </div>
-      <div class="from">
-        <div class="biao">
-          <p>个人信息</p>
-        </div>
-        <div class="message">
-          <li>
-            <span>姓名</span>
-            <input type="text" placeholder="输入你的真实中文姓名" />
-          </li>
-          <li>
-            <span>手机</span>
-            <input type="text" placeholder="输入你的真实手机号码" />
-          </li>
-          <li @click="tan" class="spnl">
-            <span>城市</span>
-            <span class="span">{{name}}</span>
-          </li>
-          <button class="btn">询问最低价</button>
-        </div>
-      </div>
-      <div class="dealer-info">
-        <p class="tip">选择报价经销商</p>
-        <ul>
-          <li
-            data-hover="hover"
-            data-id="8766"
-            :class="{active:index<3}"
-            v-for="(item,index) in formList.list"
-            :key="index"
-          >
+        <img src="http://h5.chelun.com/2017/official/img/icon-help.png" />
+      </header>
+      <section @scroll="scrollfn">
+        <div class="userShow" @click="show">
+          <img :src="details&&details.serial.Picture" />
+          <div class="dataShow">
+            <p>{{details&&details.serial.AliasName}}</p>
             <p>
-              <span>{{item.dealerShortName}}</span>
-              <span>万</span>
+              {{details&&details.market_attribute.year}}
+              款
+              {{details&&details.car_name}}
             </p>
-            <p>
-              <span>{{item.address}}</span>
-              <span>售{{item.saleRange}}</span>
-            </p>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </div>
+        <!-- 表单 -->
+        <div class="form">
+          <p class="title">个人信息</p>
+          <ul>
+            <li>
+              <span>姓名</span>
+              <input type="text" placeholder="输入你的真实中文姓名" maxlength="4"  />
+                            
+            </li>
+            <li>
+              <span>手机</span>
+              <input type="tel" placeholder="输入你的真实手机号码" maxlength="11" />
+            </li>
+            <li>
+              <span>城市</span>
+              <span
+                @click="editBlock({type:true})"
+              >{{positionsCity.CityName?positionsCity.CityName:"北京"}}</span>
+            </li>
+          </ul>
+          <div class="request">
+            <button data-hover="hover" >询最低价</button>
+          </div>
+        </div>
+        <!-- 经销商列表 -->
+        <div class="userList">
+          <p class="title">选择报价经销商</p>
+          <ul>
+            <li
+              data-hover="hover"
+              data-id="50000004"
+              :class="{active:isArr.includes(index)}"
+              v-for="(item,index) in mainList"
+              :key="index"
+              @click="checkfn(index)"
+            >
+              <p>
+                <span>{{item.dealerShortName}}</span>
+                <span>{{item.promotePrice>0?item.promotePrice:""}}万</span>
+              </p>
+              <p>
+                <span>{{item.address}}</span>
+                <span>售{{item.saleRange}}</span>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <footer :style="{display:isShow?'block':'none'}">
+        <button data-hover="hover">询最低价</button>
+      </footer>
     </div>
-    <Up :ismask="ismask" />
+    <Up :isBlock="isBlock" />
+    <Money :isUp='isUp'/>
   </div>
 </template>
-
 <script>
-import Up from "../components/Up";
-import { mapState, mapActions } from "vuex";
-
+import { mapState, mapMutations, mapActions } from "vuex";
+import Up from "@/components/Up";
+import Money from '@/components/Money'
 export default {
+  props: {},
   components: {
-    Up
+    Up,
+    Money
   },
   data() {
     return {
-      ismask: false,
-
-      name: this.$route.query.CityName,
-      AliasName: "",
-      Picture: "",
-      carId: "",
-      carName: ""
+      isShow: false,
+      isUp:false,
+      isArr: [0, 1, 2]
     };
   },
   computed: {
-    ...mapState({ 
-      formList: state => state.form.formList 
-      })
+    ...mapState({
+      isBlock: state => state.cart.isBlock,
+      cartList: state => state.cart.cartList,
+      count: state => state.cart.count,
+      positionsCity: state => state.cart.positionsCity
+    }),
+    mainList() {
+      return this.cartList.list;
+    },
+    details() {
+      return this.cartList.details;
+    }
   },
   methods: {
-    tan() {
-      this.ismask = !this.ismask;
-    },
-    carShowFn() {
-      this.carShow = !this.carShow;
-    },
     ...mapActions({
-      getformList: "form/getformList"
-    })
+      getCartList: "cart/getCartList",
+      getTask:'task/getTask'
+    }),
+    ...mapMutations({
+      editBlock: "cart/editBlock"
+    }),
+    show(){
+        this.isUp=true
+    },
+    // 显示下面的按钮询问底价
+    scrollfn(e) {
+      let top = [...e.target.children]
+        .slice(0, -1)
+        .reduce((a, b) => a + b.offsetHeight, 0);
+      let bottom = [...e.target.children].slice(-1)[0].offsetHeight;
+      e.target.scrollTop > top || e.target.scrollBottom > bottom
+        ? (this.isShow = true)
+        : (this.isShow = false);
+    },
+    checkfn(ind) {
+      let arr = Object.assign(this.isArr);
+      if (this.isArr.includes(ind)) {
+        arr.splice(this.isArr.indexOf(ind), 1);
+        this.isArr = arr;
+      } else {
+        this.isArr.push(ind);
+      }
+    }
   },
   created() {
-    this.getformList();
-    this.Picture = this.$route.params.Picture;
-    this.AliasName = this.$route.params.AliasName;
-    this.carId = this.$route.params.carId;
-    this.carName = this.$route.params.carName;
-  }
+    this.getCartList();
+    
+  },
+  mounted() {}
 };
 </script>
-
-<style lang="scss" scoped>
-.warp {
+<style scoped lang="scss">
+.cart {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
-.header {
+.oshow {
   width: 100%;
-  height: 35px;
+  height: 100%;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+header {
+  width: 100%;
+  height: 34px;
+  line-height: 34px;
+  width: 100%;
   background: #79cd92;
-  line-height: 35px;
   text-align: center;
-}
-.hot {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  overflow-y: auto;
-  position: relative;
-}
-.had {
-  background: #fff;
-  padding: 0 10px;
-  width: 100%;
-  height: 100px;
-  display: flex;
-}
-.had .img {
-  margin-top: 13px;
-  width: 120px;
-  height: 80px;
-  border: 1px dotted #cccccc;
-}
-.had .img img {
-  widows: 100%;
-  height: 100%;
-}
-.had .content {
-  margin-left: 10px;
-  margin-top: 3px;
-  line-height: 30px;
-}
-.spnl {
-  position: relative;
-}
-.span {
-  position: absolute;
-  right: 25px;
-}
-.hh {
-  text-align: center;
-  margin-top: 35px;
-  font-size: 30px;
-  color: #d3c7c7;
-  font-weight: normal;
-}
-.from {
-  width: 100%;
-  height: 210px;
-  background: #ffffff;
-  padding: 0 10px;
-}
-.from .biao {
-  width: 100%;
-  height: 20px;
-  background: #eeeeee;
-}
-.from .biao p {
-  font-size: 12px;
-  color: #666;
-
-  line-height: 20px;
-}
-.message {
-  width: 100%;
-}
-
-.message li {
-  width: 100%;
-  color: #666;
-  border-bottom: 1px solid #eeeeee;
-  height: 47px;
-  display: flex;
-  line-height: 45px;
-  position: relative;
-}
-.message li span {
-  width: 32px;
-  display: inline-block;
-  color: black;
-}
-.message li input {
-  outline: none;
-  height: 45px;
-  flex: 1;
-  border: none;
-  text-align: end;
-}
-.iconfont {
-  position: absolute;
-  right: 10px;
-}
-.city {
-  width: 100%;
-  border-bottom: 1px solid #eeeeee;
-  display: flex;
-  line-height: 45px;
-}
-.city p {
-  text-indent: 14rem;
-  font-size: 16px;
-  line-height: 45px;
-}
-.btn {
-  width: 80%;
-  border: none;
-  height: 35px;
-  margin-left: 35px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border-bottom: 1px solid #eeeeee;
-  background: skyblue;
-  color: #fff;
-  font-size: 15px;
-}
-
-.dian {
-  width: 100%;
-  padding: 0 10px;
-  display: flex;
-  flex-direction: column;
-}
-.dian p {
-  font-size: 12px;
-  color: #666;
-  background: #eeeeee;
-  width: 100%;
-  height: 20px;
-  line-height: 20px;
-}
-.dian main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.tip {
-  padding: 0 5px;
-  height: 28px;
-  line-height: 28px;
-  font-size: 12px;
-  color: #666;
-  background: #eee;
-}
-.dealer-info ul {
-  background: #fff;
-  padding: 0 0.18rem;
-}
-.dealer-info li {
-  position: relative;
-  padding: 10px 0 10px 25px;
-  border-bottom: 1px solid #eee;
-  box-sizing: border-box;
-  height: 91px;
-}
-.dealer-info li p:first-child {
-  font-size: 18px;
-}
-.dealer-info li p:first-child {
-  font-size: 18px;
-}
-.dealer-info li p:first-child span:last-child {
-  font-size: 16px;
-  float: right;
-  color: red;
-}
-.dealer-info li p:nth-child(2) {
-  margin-top: 5px;
-  font-size: 14px;
-  color: #a2a2a2;
-  span:first-child {
+  // z-index: 99;
+  p {
+    color: #fff;
+    font-size: 18pz;
     display: inline-block;
-    max-width: 254px;
   }
-  span:nth-child(2) {
-    float: right;
+  img {
+    width: 0.9rem;
+    margin-left: 0.3rem;
+    vertical-align: -10%;
   }
 }
-.dealer-info li:before {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  box-sizing: border-box;
-  position: absolute;
-  left: 5px;
-  top: 50%;
-  -webkit-transform: translate3d(0, -50%, 0);
-  transform: translate3d(0, -50%, 0);
+section {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-shrink: 0;
+  .userShow {
+    background: #fff;
+    padding: 0.96rem 0.54rem 0.72rem;
+    position: relative;
+    height: 6rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    img {
+      width: 6.9rem;
+      height: 4.23rem;
+      border: 1px solid #eee;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+    .dataShow {
+      margin-left: 0.6rem;
+      width: 12.9rem;
+      p {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        padding: 0.1rem 0;
+        box-sizing: border-box;
+        &:first-child {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+    &:before {
+      content: "";
+      display: inline-block;
+      padding-top: 0.48rem;
+      padding-right: 0.48rem;
+      border-top: 2px solid #ccc;
+      border-right: 2px solid #ccc;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      position: absolute;
+      right: 0.78rem;
+      top: 2.7rem;
+    }
+  }
+  .title {
+    padding: 0 0.9rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-size: 0.8rem;
+    color: #666;
+    background: #eee;
+  }
+  .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    ul {
+      background: #fff;
+      padding: 0 0.6rem;
+      li {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1rem;
+        height: 3rem;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        box-sizing: border-box;
+        color: #000;
+        input {
+          flex: 1;
+          display: flex;
+          text-align: end;
+          border: none;
+          outline: none;
+        }
+        &:last-child {
+          span {
+            &:last-child {
+              display: flex;
+              align-items: center;
+              &:after {
+                content: "";
+                display: inline-block;
+                padding-top: 0.42rem;
+                padding-right: 0.42rem;
+                border-top: 1px solid silver;
+                border-right: 1px solid silver;
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+              }
+            }
+          }
+        }
+      }
+    }
+    .request {
+      background: #fff;
+      text-align: center;
+      padding: 0.5rem 0;
+      box-sizing: border-box;
+      button {
+        font-size: 0.96rem;
+        color: #fff;
+        width: 80%;
+        background: #3aacff;
+        height: 2.1rem;
+        border-radius: 0.3rem;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+  .userList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    ul {
+      background: #fff;
+      padding: 0 0.18rem;
+      li {
+        position: relative;
+        padding: 0.26rem 0 0.26rem 0.54rem;
+        border-bottom: 1px solid #eee;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p {
+          width: 100%;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem 1.5rem;
+          flex-shrink: 0;
+          &:first-child {
+            span {
+              &:last-child {
+                color: #f00;
+              }
+            }
+          }
+          &:last-child {
+            span:last-child {
+              display: flex;
+              width: 3.6rem;
+              flex-shrink: 0;
+              justify-content: flex-end;
+            }
+            font-size: 0.85rem;
+            color: #afafaf;
+          }
+        }
+        &.active {
+          &:before {
+            background: #3aacff;
+            border: none;
+          }
+          &:after {
+            content: "";
+            display: inline-block;
+            padding-top: 0.41rem;
+            padding-right: 0.3rem;
+            border: 2px solid #fff;
+            -webkit-transform: rotate(40deg) translate3d(0, -150%, 0);
+            transform: rotate(40deg) translate3d(0, -150%, 0);
+            position: absolute;
+            left: 0.25rem;
+            border-left: none;
+            border-top: none;
+            top: 50%;
+          }
+        }
+        &:before {
+          position: absolute;
+          left: 0.5rem;
+          top: 1.5rem;
+          content: "";
+          display: inline-block;
+          width: 0.96rem;
+          height: 0.96rem;
+          border-radius: 50%;
+          border: 2px solid #ccc;
+          box-sizing: border-box;
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
 }
-.dealer-info li.active:before {
-  background: #3aacff;
-  border: none;
-}
-.dealer-info li.active:after {
-  content: "";
-  display: inline-block;
-  padding-top: 10px;
-  padding-right: 5px;
-  border: 2px solid #fff;
-  -webkit-transform: rotate(40deg) translate3d(0, -50%, 0);
-  transform: rotate(40deg) translate3d(0, -50%, 0);
-  position: absolute;
-  left: 6px;
-  border-left: none;
-  border-top: none;
-  top: 47%;
+footer {
+  width: 100%;
+  height: 3rem;
+  button {
+    width: 100%;
+    height: 100%;
+    line-height: 1rem;
+    background: #3aacff;
+    text-align: center;
+    font-size: 1.02rem;
+    color: #fff;
+    outline: none;
+    border: none;
+  }
 }
 </style>

@@ -9,7 +9,7 @@ const mutations = {
 }
 const actions = {
     async getformList({ commit }) {
-        let res= await getformList();
+        let res = await getformList();
         console.log(res)
         commit("setformList", res)
     }

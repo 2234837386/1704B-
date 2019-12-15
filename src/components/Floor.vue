@@ -38,6 +38,9 @@ export default {
     box-sizing: border-box;
     font-size: 1rem;
     color: #a1a1a1;
+    font-size: 1rem;
+    list-style: none;
+    color: #aaa;
   }
 }
 </style>

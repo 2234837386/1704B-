@@ -18,6 +18,7 @@ export default new Vuex.Store({
     city,
     cart,
     form
+
   },
   plugins: [
     createLogger()
