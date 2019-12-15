@@ -2,7 +2,7 @@
   <div class="Detail">
     <section>
       <div class="img">
-        <img v-lazy="detailList.CoverPhoto" data-hover="hover" />
+        <img v-lazy="$url(detailList.CoverPhoto)" data-hover="hover" />
         <span data-hover="hover">{{detailList.pic_group_count}}张照片</span>
       </div>
       <div class="info">
@@ -52,7 +52,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   props: {},
   components: {},
@@ -64,22 +64,48 @@ export default {
   computed: {
     ...mapState({
       detailList: state => state.detail.detailList,
-      detailTab: state => state.detail.detailTab,
-      detailItem: state => state.detail.detailItem,
       positionsCity: state => state.cart.positionsCity
-    })
+    }),
+    detailTab() {
+      let listdata = JSON.stringify(this.detailList.list);
+      let arr = [
+        {
+          year: "全部"
+        }
+      ];
+      listdata &&
+        JSON.parse(listdata).map((item, index) => {
+          if (arr.find(a => a.year === item.market_attribute.year)) return;
+          arr.push({
+            year: item.market_attribute.year
+          });
+        });
+      arr.map(item => {
+        if (item.year === "全部") {
+          item.children =
+            listdata &&
+            JSON.parse(listdata).filter(i => i.market_attribute.year);
+        } else {
+          item.children =
+            listdata &&
+            JSON.parse(listdata).filter(
+              i => i.market_attribute.year === item.year
+            );
+        }
+      });
+      return arr;
+    },
+    detailItem() {
+      return this.$push(this.$Sort(this.detailTab[this.ind].children));
+    }
   },
   methods: {
-    ...mapMutations({
-      setDetailItem: "detail/setDetailItem"
-    }),
     ...mapActions({
       getIp: "cart/getIp",
       getDetailList: "detail/getDetailList"
     }),
     tab(ind) {
       this.ind = ind;
-      this.setDetailItem(this.ind);
     },
     jumpCart(carID) {
       let CarID = carID ? carID : this.detailItem[0].list[0].car_id;
@@ -93,13 +119,11 @@ export default {
     }
   },
   created() {
+    console.log(this.$route.params.SerialID)
     this.getIp();
     this.getDetailList(this.$route.params.SerialID);
   },
-  mounted() {},
-  beforeUpdate() {
-    this.setDetailItem(this.ind);
-  }
+  mounted() {}
 };
 </script>
 <style scoped lang="scss">
