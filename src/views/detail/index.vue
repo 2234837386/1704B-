@@ -91,6 +91,7 @@ export default {
       carList: "detail/carList"
     }),
     tiaoimg(Alllist) {
+      
       this.$router.push({
         path: "/picture",
         query: {

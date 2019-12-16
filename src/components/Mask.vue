@@ -50,6 +50,7 @@ export default {
       this.startY = e.changedTouches[0].pageY;
     },
     endfn(e) {
+      _hmt.push(['_trackEvent', 'touch', '向右', '滑动', e]);
       this.endX = e.changedTouches[0].pageX;
       this.endY = e.changedTouches[0].pageY;
       if (this.endX - this.startX > 50 && this.startY - this.endY < 50) {

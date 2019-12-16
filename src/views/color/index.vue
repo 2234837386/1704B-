@@ -1,6 +1,6 @@
 <template>
   <div class="color_page">
-    <div class="cbox">全部颜色</div>
+    <div class="cbox" @click="$router.go(-1)">全部颜色</div>
     <div class="c_main">
       <!-- <li v-for="(item,index,a) of allColor " :key="a">
                 <div class="year">{{index}}</div>

@@ -1,6 +1,6 @@
 <template>
   <div class="carstyle_page">
-    <div class="c_top">全部车型</div>
+    <div class="c_top" @click="$router.go(-1)">全部车型</div>
     <div class="items">
       <Carlist v-for="(item,index) in allList.list" :key="index" :item="item" />
     </div>
