@@ -24,7 +24,7 @@ const routes = [
     name: "color",
     component: () => import("../views/color")
   },
-   {
+  {
     path: '/carlist',
     name: "carlist",
     component: () => import("../views/carlist")
@@ -42,7 +42,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes
 })

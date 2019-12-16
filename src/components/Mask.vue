@@ -11,7 +11,7 @@
           @click="()=>{$router.push(`/detail/${a.SerialID}`)}"
         >
           <dt>
-            <img v-lazy="$getUrl(a.Picture)" alt />
+            <img v-lazy="a.Picture" alt />
           </dt>
           <dd>
             <span>{{a.AliasName}}</span>
@@ -52,6 +52,9 @@ export default {
     endfn(e) {
       this.endX = e.changedTouches[0].pageX;
       this.endY = e.changedTouches[0].pageY;
+      if (this.endX - this.startX > 50 && this.startY - this.endY < 50) {
+        this.editInd(false);
+      }
     }
   },
   created() {},

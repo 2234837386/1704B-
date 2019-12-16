@@ -1,38 +1,38 @@
 <template>
   <div class="detail_page">
-    <!-- {{Alllist}} -->
-    <!-- 点击img跳转到pictures页面 -->
-    <img class="banimg" :src="Alllist.CoverPhoto" @click="tiaoimg(Alllist)" />
+    <img class="banimg" v-lazy="Alllist.CoverPhoto" @click="tiaoimg(Alllist)" />
     <div class="carmsg">
       <p>
         <b v-if="Alllist.market_attribute">{{Alllist.market_attribute.dealer_price}}</b>
         <span v-if="Alllist.market_attribute">指导价：{{Alllist.market_attribute.official_refer_price}}</span>
       </p>
-      <button v-if="Alllist">{{Alllist.BottomEntranceTitle}}</button>
+      <button v-if="Alllist" @click="btnClick">{{Alllist.BottomEntranceTitle}}</button>
     </div>
     <div class="timemsg">
       <span
         :class="{active:ind===index}"
         v-for="(item,index) in getYear"
         :key="index"
-        @click="()=>ind=index"
+        @click="tab(index)"
       >{{item}}</span>
     </div>
-    <div class="inhale_type" v-for="(item,index) in listEach" :key="index">
-      <div class="title">{{item.exhaust_str}}/{{item.max_power_str}}{{item.inhale_type}}</div>
-      <div class="text">
-        <span>{{item.market_attribute.year}}款 {{item.car_name}}</span>
-        <span>{{item.max_power}}马力/{{item.trans_type}}</span>
-        <li v-if="item.market_attribute">
-          指导价：
-          <span>{{item.market_attribute.dealer_price_max}}</span>
-          <b>{{item.market_attribute.dealer_price_min}}</b>
-        </li>
-        <i
-          class="ibtn"
-          v-if="Alllist.BottomEntranceTitle"
-          @click="xiao(item.car_id,item.car_name)"
-        >{{Alllist.BottomEntranceTitle}}</i>
+    <div class="inhale_type" v-for="(item,index) in detailItem" :key="index">
+      <p class="detailTitle">{{item.key}}</p>
+      <div class="text" v-for="(v,i) in item.list" :key="i">
+        <div class="text_item" v-for="(v,i) in item.list" :key="i">
+          <p>{{v.market_attribute.year}}款{{v.car_name}}</p>
+          <p>{{v.horse_power}}马力{{v.gear_num}}档{{v.trans_type}}</p>
+          <p>
+            <span>指导价 {{v.market_attribute.official_refer_price}}</span>
+            <span>{{v.market_attribute.dealer_price_min?`${v.market_attribute.dealer_price_min}起`:"暂无"}}</span>
+          </p>
+          <button
+            data-id="138592"
+            data-hover="hover"
+            @click="btnClick(v.car_id)"
+          >{{Alllist.BottomEntranceTitle}}</button>
+          
+        </div>
       </div>
     </div>
     <div class="btn" v-if="Alllist.BottomEntranceTitle" @click="btnClick ">
@@ -81,6 +81,9 @@ export default {
       let ind = src.indexOf("carid");
       let str = src.substr(ind, 12).split("=")[1];
       return str;
+    },
+    detailItem() {
+      return this.$pushfn(this.$Sortfn(this.listEach));
     }
   },
   methods: {
@@ -106,7 +109,6 @@ export default {
           SerialID:this.$route.params.id
         }
       });
-      console.log(a, b);
     },
     btnClick() {
       this.$router.push({
@@ -116,19 +118,15 @@ export default {
           cityId: 201
         }
       });
-      // console.log(this.AllList)
-      // this.firstData=this.AllList.list
+    },
+    tab(ind) {
+      this.ind = ind;
     }
   },
   created() {
     this.carList(this.$route.params.id);
   },
-  mounted() {
-    //  this.Alllist.list.map((ite,k)=>{
-    //    return this.firstData=ite
-    //  })
-    console.log(this.Alllist);
-  }
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -204,53 +202,55 @@ export default {
   background: #eee;
   flex-shrink: 0;
 }
-.title {
+.detailTitle {
   margin: 5px 10px;
   width: 100%;
-  height: 40px;
-  line-height: 40px;
+  height: 18px;
+  line-height: 18px;
   flex-shrink: 0;
 }
 .text {
   width: 100%;
-  height: 150px;
   display: flex;
   flex-direction: column;
   background: #fff;
   flex-shrink: 0;
-  // align-items: center;
-  i {
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    border-top: 1px solid #ccc;
-    color: #09f;
-    font-size: 20px;
-  }
-  span,
-  li {
-    margin: 5px 10px;
-  }
-  span:first-child {
-    margin-top: 10px;
-    font-size: 15px;
-  }
-  span:nth-child(2) {
-    color: #aaa;
-  }
-  li {
-    text-align: right;
-    margin-right: 3px;
-    color: #aaa;
-    span {
-      margin: 0 5px;
+  .text_item {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.2rem;
+    border-bottom: 0.5rem solid #f4f4f4;
+    overflow: hidden;
+    p {
+      padding: 0.78rem 0 0 0.5rem;
+      font-size: 0.9rem;
+      line-height: 0.9rem;
+      color: #3d3d3d;
+      &:nth-child(2) {
+        color: #bdbdbd;
+        font-size: 0.72rem;
+      }
+      &:nth-child(3) {
+        text-align: right;
+        padding-bottom: 0.3rem;
+        font-size: 0.9rem;
+        color: #818181;
+        span:last-child {
+          color: #f00;
+          margin: 0 0.5rem;
+        }
+      }
     }
-    b {
-      font-size: 20px;
-      color: #ff0000;
-      font-weight: normal;
-      margin: 0 5px;
+    button {
+      border: none;
+      border-top: 1px solid #eee;
+      width: 100%;
+      height: 2.5rem;
+      font-size: 1rem;
+      color: #00afff;
+      background: #fff;
+      font-weight: 500;
+      outline: none;
     }
   }
 }
