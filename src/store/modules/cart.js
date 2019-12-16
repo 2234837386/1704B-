@@ -1,59 +1,68 @@
-import { getCartList, getCityList, getCityListTwo, getIp } from "@/servicer/index"
+// import { getMasterList } from '@/servicer/index'
+// // 存放数据
+// const state = {
+//     cartList: [], //渲染存放城市全国城市的列表  
+// }
+// const mutations = {
+//     getList(state, payload) {
+//         state.cartList = payload
+//     },
+// }
+// const actions = {
+//     async getMasterList({ commit }) {
+//         let res = await getMasterList()
+//         commit('getList', res)
+//         // console.log(res);
+//     }
+// }
+// export default {
+//     namespaced: true,
+//     state,
+//     mutations,
+//     actions
+// }
+
+import { getCartList, getCityList, getCityListTwo } from "@/servicer/index"
 const state = {
     cartList: {},
     cityList: [],
     cityListTwo: [],
     isShow: false,
     isBlock: false,
-    isYear: false,
     positionsCity: {}
 }
 const mutations = {
-    setCartList(state, actions) {
-        state.cartList = actions;
+    setCartList(state, payload) {
+        state.cartList =payload;
     },
-    setCityList(state, actions) {
-        state.cityList = actions;
+    setCityList(state, payload) {
+        state.cityList = payload;
     },
-    setCityListTwo(state, actions) {
-        state.cityListTwo = actions;
+    setCityListTwo(state, payload) {
+        state.cityListTwo = payload;
     },
-    editShow(state, actions) {
-        state.isShow = actions.type;
+    editShow(state, payload) {
+        state.isShow = payload.type;
     },
-    editBlock(state, actions) {
-        state.isBlock = actions.type;
+    editBlock(state, payload) {
+        state.isBlock = payload.type;
     },
-    editYear(state, actions) {
-        state.isYear = actions.type;
-    },
-    setIp(state, actions) {
-        state.positionsCity = actions;
-    },
-    editCity(state, actions) {
-        let { CityID, CityName } = actions;
-        state.positionsCity = { CityID, CityName };
+    editCity(state, payload) {
+        state.positionsCity = payload;
     }
 }
 const actions = {
+    async getCartList({ commit }) {
+        let res = await getCartList();
+        commit("setCartList", res)
+    },
     async getCityList({ commit }) {
         let res = await getCityList();
         commit("setCityList", res)
     },
-    async getCityListTwo({ commit }, actions) {
-        let res = await getCityListTwo(actions);
+    async getCityListTwo({ commit }, payload) {
+        let res = await getCityListTwo(payload);
         commit("setCityListTwo", res)
-    },
-    async getIp({ commit }) {
-        let res = await getIp();
-        commit("setIp", res)
-    },
-    async getCartList({ commit }, actions) {
-        let res = await getCartList(
-            actions.CarID ? actions.CarID : 131315,
-            actions.CityID ? actions.CityID : 201
-        );
-        commit("setCartList", res)
     }
 }
 export default {

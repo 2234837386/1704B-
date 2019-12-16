@@ -1,4 +1,4 @@
-import request from "@/utils/request"
+import request from "@/util/request"
 export let getMasterBrandList = () => {
     return request("/v2-car-getMasterBrandList.html")
 }

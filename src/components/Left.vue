@@ -21,12 +21,10 @@ export default {
   },
   computed: {
     ...mapState({
-      cityListTwo: state => state.cart.cityListTwo,
-      positionsCity: state => state.cart.positionsCity
+      cityListTwo: state => state.cart.cityListTwo
     })
   },
   methods: {
-    ...mapActions({ getCartList: "cart/getCartList" }),
     ...mapMutations({
       editShow: "cart/editShow",
       editBlock: "cart/editBlock",
@@ -36,10 +34,6 @@ export default {
       this.editCity(item);
       this.editShow({ type: false });
       this.editBlock({ type: false });
-      this.getCartList({
-        CarID: this.$route.params.CarID,
-        CityID: this.positionsCity.CityID
-      });
     }
   },
   created() {},

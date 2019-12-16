@@ -3,15 +3,24 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vueLazyload from "vue-lazyload"
-
+import axios from 'axios'
+import './fonts/iconfont.css'
+Vue.component("Floor", () => import("@/components/Floor"))
+Vue.component("aMask", () => import("@/components/Mask"))
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios
 Vue.use(vueLazyload, {
   preload: 1.3,
   error: "/1.jpg",
   loading: "/favicon.ico",
   attempt: 1
 })
-Vue.prototype.$Sort = function (data) {
+Vue.prototype.$getUrl = function (url) {
+  let newurl = url
+  let str = newurl.slice(7);
+  return "https://images.weserv.nl?url=" + str;
+}
+Vue.prototype.$Sortfn = function (data) {
   return data && data.sort((a, b) => {
     if (a["exhaust"] === b["exhaust"]) {
       if (a["max_power"] === b["max_power"]) {
@@ -24,12 +33,7 @@ Vue.prototype.$Sort = function (data) {
     }
   })
 }
-Vue.prototype.$url = function (url) {
-  if (url && url.indexOf("{0}") === -1) return url;
-  let str = url && url.replace("{0}", "3");
-  return str;
-}
-Vue.prototype.$push = function (data) {
+Vue.prototype.$pushfn = function(data) {
   data = data && data.map(item => {
     item.keys = `${item.exhaust_str}${item.max_power_str} ${item.inhale_type}`;
     return item;
@@ -48,7 +52,6 @@ Vue.prototype.$push = function (data) {
   });
   return newList;
 }
-
 new Vue({
   router,
   store,
