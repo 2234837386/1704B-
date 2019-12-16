@@ -29,7 +29,7 @@
           <button
             data-id="138592"
             data-hover="hover"
-            @click="btnClick(v.car_id)"
+            @click="btnClick"
           >{{Alllist.BottomEntranceTitle}}</button>
           
         </div>

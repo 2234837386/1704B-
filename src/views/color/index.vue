@@ -2,10 +2,6 @@
   <div class="color_page">
     <div class="cbox">全部颜色</div>
     <div class="c_main">
-      <!-- <li v-for="(item,index,a) of allColor " :key="a">
-                <div class="year">{{index}}</div>
-                {{index}} 
-      </li>-->
       <div class="year">
         <span
           v-for="(item,index,k) of allColor"
@@ -45,7 +41,7 @@ export default {
 
       return arr;
     }
-    // this.colorData=
+ 
   },
   methods: {
     ...mapActions({

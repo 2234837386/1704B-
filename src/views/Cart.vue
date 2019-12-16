@@ -31,9 +31,6 @@
             <li>
               <span>城市</span>
               <span @click="editBlock({type:true})">{{positionsCity.CityName?positionsCity.CityName:"北京"}}</span>
-               <!-- <span
-                @click="editBlock({type:true})"
-              >{{positionsCity.CityName?positionsCity.CityName:"北京"}}</span> -->
             </li>
           </ul>
           <div class="request">
