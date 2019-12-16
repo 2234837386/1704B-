@@ -23,7 +23,3 @@ export default {
     actions,
     namespaced: true
 }
-// carId: this.Alllist.list.car_id,
-// AliasName: this.Alllist.AliasName,
-// Picture: this.Alllist.Picture,
-// carName: this.Alllist.list.car_name
