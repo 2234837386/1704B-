@@ -102,7 +102,8 @@ export default {
           carId: this.Alllist.list.car_id,
           AliasName: this.Alllist.AliasName,
           Picture: this.Alllist.Picture,
-          carName: this.Alllist.list.car_name
+          carName: this.Alllist.list.car_name,
+          SerialID:this.$route.params.id
         }
       });
       console.log(a, b);

@@ -1,7 +1,7 @@
 <template>
   <div :class="{up:true,active:isBlock}">
     <div class="province">
-      <div class="location">
+      <div class="location" @click="GoBack('北京')">
         <p>自动定位</p>
         <p>北京</p>
       </div>
@@ -47,11 +47,17 @@ export default {
       getCityList: "cart/getCityList"
     }),
     ...mapMutations({
-      editShow: "cart/editShow"
+      editShow: "cart/editShow",
+      editBlock: "cart/editBlock",
+      editCity: "cart/editCity"
     }),
     editfn(id) {
       this.editShow({ type: true });
       this.getCityListTwo(id);
+    },
+    GoBack(str) {
+      this.editCity({ CityName: str, CityID: 201 });
+      this.editBlock({ type: false });
     }
   },
   created() {
