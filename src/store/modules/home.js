@@ -33,7 +33,6 @@ const actions = {
         commit("setMaskList", res)
     }
 }
-
 export default {
     namespaced: true,
     state,

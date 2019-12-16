@@ -12,7 +12,7 @@
             @click.prevent="touchfn(a.MasterID)"
           >
             <dt>
-              <img v-lazy="$getUrl(a.CoverPhoto)" alt />
+              <img v-lazy="a.CoverPhoto" alt />
             </dt>
             <dd>
               <b>{{a.Name}}</b>
@@ -22,14 +22,19 @@
       </div>
     </div>
     <Floor />
-    <aMask />
+    <AMask />
   </div>
 </template>
 <script>
-import {mapState,mapMutations,mapActions} from 'vuex'
+import Floor from "@/components/Floor";
+import AMask from "@/components/Mask";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   props: {},
-  components: {},
+  components: {
+    Floor,
+    AMask
+  },
   data() {
     return {};
   },

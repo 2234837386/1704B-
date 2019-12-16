@@ -6,7 +6,7 @@
         <img src="http://h5.chelun.com/2017/official/img/icon-help.png" />
       </header>
       <section @scroll="scrollfn">
-        <div class="userShow" @click="show">
+        <div class="userShow" @click="editYear({type:true})">
           <img :src="details&&details.serial.Picture" />
           <div class="dataShow">
             <p>{{details&&details.serial.AliasName}}</p>
@@ -17,14 +17,12 @@
             </p>
           </div>
         </div>
-        <!-- 表单 -->
         <div class="form">
           <p class="title">个人信息</p>
           <ul>
             <li>
               <span>姓名</span>
-              <input type="text" placeholder="输入你的真实中文姓名" maxlength="4"  />
-                            
+              <input type="text" placeholder="输入你的真实中文姓名" maxlength="4" />
             </li>
             <li>
               <span>手机</span>
@@ -32,16 +30,13 @@
             </li>
             <li>
               <span>城市</span>
-              <span
-                @click="editBlock({type:true})"
-              >{{positionsCity.CityName?positionsCity.CityName:"北京"}}</span>
+              <span @click="editBlock({type:true})">{{positionsCity.CityName}}</span>
             </li>
           </ul>
           <div class="request">
-            <button data-hover="hover" >询最低价</button>
+            <button data-hover="hover">询最低价</button>
           </div>
         </div>
-        <!-- 经销商列表 -->
         <div class="userList">
           <p class="title">选择报价经销商</p>
           <ul>
@@ -65,34 +60,33 @@
           </ul>
         </div>
       </section>
-
       <footer :style="{display:isShow?'block':'none'}">
         <button data-hover="hover">询最低价</button>
       </footer>
     </div>
     <Up :isBlock="isBlock" />
-    <Money :isUp='isUp'/>
+    <CarYear :isYear="isYear" />
   </div>
 </template>
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
 import Up from "@/components/Up";
-import Money from '@/components/Money'
+import CarYear from "@/components/CarYear";
 export default {
   props: {},
   components: {
     Up,
-    Money
+    CarYear
   },
   data() {
     return {
       isShow: false,
-      isUp:false,
       isArr: [0, 1, 2]
     };
   },
   computed: {
     ...mapState({
+      isYear: state => state.cart.isYear,
       isBlock: state => state.cart.isBlock,
       cartList: state => state.cart.cartList,
       count: state => state.cart.count,
@@ -107,16 +101,12 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCartList: "cart/getCartList",
-      getTask:'task/getTask'
+      getCartList: "cart/getCartList"
     }),
     ...mapMutations({
-      editBlock: "cart/editBlock"
+      editBlock: "cart/editBlock",
+      editYear: "cart/editYear"
     }),
-    show(){
-        this.isUp=true
-    },
-    // 显示下面的按钮询问底价
     scrollfn(e) {
       let top = [...e.target.children]
         .slice(0, -1)
@@ -137,8 +127,10 @@ export default {
     }
   },
   created() {
-    this.getCartList();
-    
+    this.editBlock({ type: false });
+    this.editYear({ type: false });
+    let { CarID, CityID } = this.$route.params;
+    this.getCartList(this.$route.params);
   },
   mounted() {}
 };
@@ -148,26 +140,24 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  overflow: hidden;
 }
 .oshow {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-shrink: 0;
   flex-direction: column;
 }
 header {
   width: 100%;
-  height: 34px;
-  line-height: 34px;
+  height: 1.8rem;
+  line-height: 1.8rem;
   width: 100%;
   background: #79cd92;
   text-align: center;
-  // z-index: 99;
+  z-index: 99;
   p {
     color: #fff;
-    font-size: 18pz;
+    font-size: 0.9rem;
     display: inline-block;
   }
   img {
@@ -182,7 +172,6 @@ section {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  flex-shrink: 0;
   .userShow {
     background: #fff;
     padding: 0.96rem 0.54rem 0.72rem;
@@ -190,7 +179,6 @@ section {
     height: 6rem;
     box-sizing: border-box;
     display: flex;
-    flex-shrink: 0;
     align-items: center;
     img {
       width: 6.9rem;
@@ -240,7 +228,6 @@ section {
     width: 100%;
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
     ul {
       background: #fff;
       padding: 0 0.6rem;
@@ -261,6 +248,7 @@ section {
           outline: none;
         }
         &:last-child {
+          border-bottom: none;
           span {
             &:last-child {
               display: flex;
@@ -291,7 +279,7 @@ section {
         width: 80%;
         background: #3aacff;
         height: 2.1rem;
-        border-radius: 0.3rem;
+        border-radius: 0.1rem;
         border: none;
         outline: none;
       }

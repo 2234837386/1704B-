@@ -16,7 +16,7 @@ export default {
   mounted() {}
 };
 </script>
-<style  lang="scss">
+<style lang="scss">
 * {
   margin: 0;
   padding: 0;
@@ -26,15 +26,14 @@ export default {
   box-sizing: border-box;
 }
 html,
-body,
-#app {
+body {
   width: 100%;
   height: 100%;
 }
 #app {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  overflow-y: auto;
 }
 </style>

@@ -20,11 +20,12 @@ const routes = [
     component: () => import("@/views/picture")
   },
   {
+
     path: '/color',
     name: "color",
     component: () => import("../views/color")
   },
-  {
+   {
     path: '/carlist',
     name: "carlist",
     component: () => import("../views/carlist")
@@ -34,15 +35,15 @@ const routes = [
     name: "cart",
     component: () => import("../views/Cart.vue")
   },
-
   {
     path: "*",
+
     redirect: "/home"
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
