@@ -3,69 +3,72 @@
     <div class="p_top">
       <!-- @click="carcolor"  {{color?color:'颜色'}} -->
       <li @click="colorBtn">
-          颜色
+        颜色
         <i class="iconfont icon-angle-down"></i>
       </li>
       <!--  @click="carstyle"  {{cars?cars:'车款'}}-->
       <li @click="styleBtn">
-          车款
+        车款
         <i class="iconfont icon-angle-down"></i>
       </li>
     </div>
     <div class="boxList">
-          <Serviceimg v-for="(item,index) in imagesDate" :key="index" :item='item'/>
+      <Serviceimg v-for="(item,index) in imagesDate" :key="index" :item="item" />
     </div>
+    <JpegList />
   </div>
 </template>
 <script>
-import {mapState,mapActions,mapMutations} from 'vuex' 
-import Serviceimg from '../../components/Serviceimg'
+import JpegList from "@/components/JpegList";
+import { mapState, mapActions, mapMutations } from "vuex";
+import Serviceimg from "../../components/Serviceimg";
 export default {
   props: {},
   components: {
-    Serviceimg
+    Serviceimg,
+    JpegList
   },
   data() {
     return {
-      showColor:false
+      showColor: false
     };
   },
   created() {
-    this.carImage(this.$route.query.SerialID)
+    this.carImage(this.$route.query.SerialID);
   },
   computed: {
     ...mapState({
-       imagesDate:state=>state.carimage. imagesData,
-       EnlargentImageflag:state=>state.carimage.EnlargentImageflag,
-       colorId:state=>state.carimage.colorId,
-       carId:state=>state.carimage.carId
+      imagesDate: state => state.carimage.imagesData,
+      EnlargentImageflag: state => state.carimage.EnlargentImageflag,
+      colorId: state => state.carimage.colorId,
+      carId: state => state.carimage.carId
     })
   },
   methods: {
     ...mapActions({
-      carImage:'carimage/carImage'
+      carImage: "carimage/carImage"
     }),
-    setColor(){
-      this.showColor=true;
+    setColor() {
+      this.showColor = true;
     },
-    setType(){
-      this.$router.push("/type?serialId"+this.serialId)
+    setType() {
+      this.$router.push("/type?serialId" + this.serialId);
     },
-    colorBtn(){
+    colorBtn() {
       this.$router.push({
-        path:'/color',
-        query:{
-          SerialID:this.$route.query.SerialID
+        path: "/color",
+        query: {
+          SerialID: this.$route.query.SerialID
         }
-      })
+      });
     },
-    styleBtn(){
+    styleBtn() {
       this.$router.push({
-        path:'/carlist',
-        query:{
-          SerialID:this.$route.query.SerialID
+        path: "/carlist",
+        query: {
+          SerialID: this.$route.query.SerialID
         }
-      })
+      });
     }
   },
 
@@ -96,8 +99,7 @@ export default {
     }
   }
   .boxList {
-   flex: 1;
-
+    flex: 1;
   }
 }
 </style>

@@ -7,6 +7,7 @@
     <li v-for="(itemimg,key) in item.List" :key="key">
       <span v-lazy:background-image="itemimg.Url"></span>
     </li>
+    <JpgList />
   </div>
 </template>
 <script>
@@ -17,17 +18,18 @@ export default {
     ...mapMutations({
       //   imgFlag:
     })
+  },
+  components: {
   }
 };
 </script>
 <style lang="scss" scoped>
 .image_ilist {
   width: 100%;
-//   height: 100%;
   display: flex;
   flex-wrap: wrap;
   position: relative;
- 
+
   li {
     width: 33%;
     height: 122px;
@@ -39,25 +41,24 @@ export default {
       background-size: cover;
       background-position: center;
     }
-   
   }
 }
 
-.img_ps{
-    position: absolute;
-    width: 123px;
-    height: 122px;
+.img_ps {
+  position: absolute;
+  width: 123px;
+  height: 122px;
 
-    top: 0;
-    left: 0;
-    color: #ffffff;
-    background: rgba(56,90,130,.5);
-    font-size: 13px;
-     text-align: center;
-    .img_name{
-        margin-top: 45px;
-        font-size: 14px;
-        margin-bottom: 3px;
-    }
+  top: 0;
+  left: 0;
+  color: #ffffff;
+  background: rgba(56, 90, 130, 0.5);
+  font-size: 13px;
+  text-align: center;
+  .img_name {
+    margin-top: 45px;
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
 }
 </style>
