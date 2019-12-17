@@ -29,7 +29,7 @@
           <button
             data-id="138592"
             data-hover="hover"
-            @click="btnClick(v.car_id)"
+            @click="btnClick"
           >{{Alllist.BottomEntranceTitle}}</button>
           
         </div>
@@ -106,7 +106,8 @@ export default {
           carId: this.Alllist.list.car_id,
           AliasName: this.Alllist.AliasName,
           Picture: this.Alllist.Picture,
-          carName: this.Alllist.list.car_name
+          carName: this.Alllist.list.car_name,
+          SerialID:this.$route.params.id
         }
       });
     },

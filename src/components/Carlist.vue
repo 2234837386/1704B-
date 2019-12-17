@@ -48,7 +48,7 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: violet;
+  // background: violet;
   .title {
     width: 100%;
     height: 30px;

@@ -1,12 +1,10 @@
 <template>
   <div class="picture_page">
     <div class="p_top">
-      <!-- @click="carcolor"  {{color?color:'颜色'}} -->
       <li @click="colorBtn">
         颜色
         <i class="iconfont icon-angle-down"></i>
-      </li>
-      <!--  @click="carstyle"  {{cars?cars:'车款'}}-->
+      </li>    
       <li @click="styleBtn">
         车款
         <i class="iconfont icon-angle-down"></i>
