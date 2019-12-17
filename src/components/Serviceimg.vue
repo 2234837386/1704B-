@@ -4,19 +4,25 @@
       <p class="img_name">{{item.Name}}</p>
       <p>{{item.Count}}张</p>
     </div>
-    <li v-for="(itemimg,key) in item.List" :key="key">
+    <li  v-for="(itemimg,key) in item.List" :key="key" @click="showFn">
       <span v-lazy:background-image="itemimg.Url"></span>
     </li>
   </div>
 </template>
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations,mapState } from "vuex";
 export default {
   props: ["item"],
+  computed: {
+    
+  },
   methods: {
     ...mapMutations({
-      //   imgFlag:
-    })
+        imgFlag:"carimage/setImageFlag"
+    }),
+    showFn(e){
+      this.imgFlag(true)
+    }
   }
 };
 </script>

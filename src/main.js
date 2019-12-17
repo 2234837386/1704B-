@@ -5,6 +5,12 @@ import store from './store'
 import vueLazyload from "vue-lazyload"
 import axios from 'axios'
 import './fonts/iconfont.css'
+import { ImagePreview } from 'vant';
+import { Swipe, SwipeItem } from 'vant';
+
+Vue.use(Swipe).use(SwipeItem);;
+
+Vue.use(ImagePreview);
 Vue.component("Floor", () => import("@/components/Floor"))
 Vue.component("aMask", () => import("@/components/Mask"))
 Vue.config.productionTip = false

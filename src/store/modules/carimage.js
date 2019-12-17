@@ -3,7 +3,8 @@ const state={
     imagesData:[],
     EnlargentImageflag:false,
     colorId:'',//选择车系颜色
-    carId:''//选择车款
+    carId:'',//选择车款,
+    imgFlag:false
 }
 const mutations={
     getImageData(state, payload) {
@@ -23,6 +24,9 @@ const mutations={
     },
     setCarId(state,payload){
         state.carId=payload
+    },
+    setImageFlag(state,payload){
+        state.imgFlag=payload;
     }
 }
 const actions={

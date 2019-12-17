@@ -13,19 +13,23 @@
     <div class="boxList">
           <Serviceimg v-for="(item,index) in imagesDate" :key="index" :item='item'/>
     </div>
+<ImagePreview></ImagePreview>
   </div>
 </template>
 <script>
 import {mapState,mapActions,mapMutations} from 'vuex' 
 import Serviceimg from '../../components/Serviceimg'
+import ImagePreview from '../../components/ImagePreview'
 export default {
   props: {},
   components: {
-    Serviceimg
+    Serviceimg,
+    ImagePreview
   },
   data() {
     return {
-      showColor:false
+      showColor:false,
+      isImage:false
     };
   },
   created() {
@@ -72,6 +76,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .picture_page {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
