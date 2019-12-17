@@ -22,11 +22,11 @@
           <ul>
             <li>
               <span>姓名</span>
-              <input type="text" placeholder="输入你的真实中文姓名" maxlength="4" />
+              <input type="text" placeholder="输入你的真实中文姓名" maxlength="4" v-model="username"/>
             </li>
             <li>
               <span>手机</span>
-              <input type="tel" placeholder="输入你的真实手机号码" maxlength="11" />
+              <input type="tel" placeholder="输入你的真实手机号码" maxlength="11" v-model="phone"/>
             </li>
             <li>
               <span>城市</span>
@@ -34,7 +34,7 @@
             </li>
           </ul>
           <div class="request">
-            <button data-hover="hover">询最低价</button>
+            <button data-hover="hover" @click="diPrice">询最低价</button>
           </div>
         </div>
         <div class="userList">
@@ -81,7 +81,9 @@ export default {
   data() {
     return {
       isShow: false,
-      isArr: [0, 1, 2]
+      isArr: [0, 1, 2],
+      username:"",
+      phone:""
     };
   },
   computed: {
@@ -119,6 +121,7 @@ export default {
         : (this.isShow = false);
     },
     checkfn(ind) {
+      _hmt.push(['_trackEvent', '列表', '点击']);
       let arr = Object.assign(this.isArr);
       if (this.isArr.includes(ind)) {
         arr.splice(this.isArr.indexOf(ind), 1);
@@ -126,6 +129,13 @@ export default {
       } else {
         this.isArr.push(ind);
       }
+    },
+    diPrice(){      
+        if((/^[\u4e00-\u9fa5]{2,4}$/).test(this.username) &&(/^[0-9]+.?[0-9]*$/).test(this.phone)){
+            alert("询价成功")
+          }else{
+            alert("输入错误")
+        }
     }
   },
   created() {

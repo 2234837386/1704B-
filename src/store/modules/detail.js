@@ -7,7 +7,7 @@ const state = {
 const mutations = {
     getList(state, payload) {
         let arr = JSON.parse(JSON.stringify(payload));
-        arr.CoverPhoto =  arr.CoverPhoto.replace("{0}", "3");
+        // arr.CoverPhoto = arr.CoverPhoto.indexOf("{0}") !== -1 ? arr.CoverPhoto.replace("{0}", "3") : arr.CoverPhoto;
         state.allList = arr;
     }
 }
