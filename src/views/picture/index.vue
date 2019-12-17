@@ -13,18 +13,15 @@
     <div class="boxList">
       <Serviceimg v-for="(item,index) in imagesDate" :key="index" :item="item" />
     </div>
-    <JpegList />
   </div>
 </template>
 <script>
-import JpegList from "@/components/JpegList";
 import { mapState, mapActions, mapMutations } from "vuex";
 import Serviceimg from "../../components/Serviceimg";
 export default {
   props: {},
   components: {
-    Serviceimg,
-    JpegList
+    Serviceimg
   },
   data() {
     return {
